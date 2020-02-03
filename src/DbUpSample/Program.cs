@@ -7,7 +7,7 @@ using DbUp.Engine;
 using DbUp.Helpers;
 using DbUp.Support;
 
-namespace DbUpSample
+namespace DbUp
 {
     class Program
     {
@@ -19,9 +19,9 @@ namespace DbUpSample
 
             var upgradeEngineBuilder = DeployChanges.To
                 .MySqlDatabase(connectionString, null)
-                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
-                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
-                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
+                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
+                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
+                // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
                 .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/BeforeDeploymentScripts/")
                 .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/DeploymentScripts/")
                 .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/PostDeploymentScripts/")
