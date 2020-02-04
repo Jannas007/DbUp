@@ -22,9 +22,9 @@ namespace DbUp
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/BeforeDeploymentScripts/")
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/DeploymentScripts/")
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/PostDeploymentScripts/")
+                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/CreateBaseDBScripts/", new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
+                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/UpdateScripts/", new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
+                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/PostDeploymentScripts/", new SqlScriptOptions { ScriptType =  ScriptType.RunAlways})
                 .WithTransactionPerScript()
                 .LogToConsole();
 

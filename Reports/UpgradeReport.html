@@ -14,7 +14,7 @@
             <div class="alert alert-danger">& nbsp;JavaScript execution is currently disabled. Enable JavaScript on your browser to view the change report.</div>
     </noscript>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">DBUp Delta Report Generated 2/3/2020 1:33:54 PM</a>
+		<a class="navbar-brand" href="#">DBUp Delta Report Generated 2/4/2020 8:24:16 AM</a>
 	</nav>
     <div class="jumbotron">
         <h2>DBUp Delta Report</h2>
@@ -28,7 +28,7 @@
 			<div class="card-header" id="script0">
 				<h5>
 					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents0">
-						03Configuration.LocationZipcodes.sql
+						00Configuration.sql
 					</button>
 				</h5>
 			</div>
@@ -37,1634 +37,521 @@
 			  <div class="card-body">
 				<pre class="prettyprint">
 					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`LocationZipcodes` (
-	`LocationZipcodeId` INT(11) NOT NULL AUTO_INCREMENT,
-	`LocationId` INT(11) NOT NULL,
-	`ZipcodeFrom` CHAR(6) NOT NULL,
-	`ZipcodeTo` CHAR(6) NOT NULL,
-	`DistributionChannelId` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`LocationZipcodeId`),
-	INDEX `FK__LocationZ__Locat__208CD6FA` (`LocationId`),
-	INDEX `FK__LocationZ__Distr__2180FB33` (`DistributionChannelId`)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=3474
-;
+CREATE DATABASE  IF NOT EXISTS `Configuration` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Configuration`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Configuration
+-- ------------------------------------------------------
+-- Server version	5.6.10
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script1">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents1">
-						03Configuration.PlanningConfigurationSettings.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents1" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`PlanningConfigurationSettings` (
-	`DistributionChannelId` INT(11) NOT NULL,
-	`SettingName` VARCHAR(100) NOT NULL,
-	`SettingValue` VARCHAR(500) NOT NULL,
-	PRIMARY KEY (`DistributionChannelId`, `SettingName`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script2">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents2">
-						03Configuration.ProductCodeDeliveryTimeWindows.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents2" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`ProductCodeDeliveryTimeWindows` (
-	`DistributionChannelId` INT(11) NOT NULL,
-	`ProductCode` CHAR(4) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	PRIMARY KEY (`DistributionChannelId`, `ProductCode`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script3">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents3">
-						03Dimensie.ObjectSubTypes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents3" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Dimensie.ObjectSubTypes
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `schemaversions`
 (
-	ObjectSubTypeId INT NOT NULL PRIMARY KEY,
-	ObjectSubType NVARCHAR(10) NOT NULL,
-	ObjectTypeId INT NOT NULL
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Table structure for table `AddressDeliveryTimeWindows`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script4">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents4">
-						03Dimension.ObjectSubTypes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents4" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Dimension`.`ObjectSubTypes` (
-	`ObjectSubTypeId` INT(11) NOT NULL,
-	`ObjectSubTypeName` VARCHAR(10) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`ObjectTypeId` INT(11) NOT NULL,
-	PRIMARY KEY (`ObjectSubTypeId`),
-	INDEX `FK__ObjectSub__Objec__0F624AF8` (`ObjectTypeId`)
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script5">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents5">
-						03Fact.ObjectItems.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents5" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS Fact.ObjectItems(
-	ObjectItemId bigint AUTO_INCREMENT NOT NULL,
-	ObjectSourceId INT(11) NOT NULL,
-	ObjectTypeId int(11) NOT NULL,
-	ObjectSubTypeId int(11) NOT NULL,
-	ObjectName varchar(255) NOT NULL,
-	`Status` int NOT NULL,
-	Created datetime NOT NULL,
-	Updated datetime NOT NULL,
-	PRIMARY KEY(ObjectItemId)
-)
-;
+DROP TABLE IF EXISTS `AddressDeliveryTimeWindows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AddressDeliveryTimeWindows` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`DistributionChannelId`,`Zipcode`,`Housenumber`,`Extension`),
+  CONSTRAINT `FK__AddressDe__Distr__4DB4832C` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script6">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents6">
-						03Fact.ParcelOptionFeatures.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents6" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`ParcelOptionFeatures` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`Option` CHAR(3) NOT NULL,
-	`Feature` CHAR(3) NOT NULL,
-	`Updated` DATETIME(6) NOT NULL,
-	PRIMARY KEY (`Barcode`, `Option`, `Feature`),
-	INDEX `IDX_FACT_PARCELOPTIONFEATURES_BARCODE` (`Barcode`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+--
+-- Table structure for table `AddressMappings`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script7">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents7">
-						03Feit.ObjectItems.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents7" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.ObjectItems
-(
-	ObjectItemId BIGINT NOT NULL  PRIMARY KEY,
-	ObjectSourceId INT NOT NULL,
-	ObjectTypeId INT NOT NULL,
-	ObjectSubTypeId INT NOT NULL,
-	ObjectName NVARCHAR(255) NOT NULL,
-	Status INT NOT NULL, 
-    Created DATETIME2 NOT NULL, 
-    Updated DATETIME2 NOT NULL
+DROP TABLE IF EXISTS `AddressMappings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AddressMappings` (
+  `AddressMappingId` int(11) NOT NULL AUTO_INCREMENT,
+  `DistributionChannelId` int(11) NOT NULL,
+  `OriginalZipcode` varchar(10) NOT NULL,
+  `OriginalHouseNr` int(11) NOT NULL,
+  `OriginalExtension` varchar(100) NOT NULL DEFAULT '',
+  `MappedZipcode` varchar(10) NOT NULL,
+  `MappedStreet` varchar(100) NOT NULL DEFAULT '',
+  `MappedHouseNr` int(11) NOT NULL,
+  `MappedExtension` varchar(100) NOT NULL DEFAULT '',
+  `MappedCity` varchar(50) NOT NULL,
+  PRIMARY KEY (`AddressMappingId`),
+  UNIQUE KEY `UQ_AddressMappings_OriginalAddress` (`DistributionChannelId`,`OriginalZipcode`,`OriginalHouseNr`,`OriginalExtension`),
+  CONSTRAINT `FK_AddressMappings_DistributionChannelId` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `AreaDeliveryTimewindows`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script8">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents8">
-						03Processing.ParcelOptionFeatures.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents8" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`ParcelOptionFeatures` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`Option` CHAR(3) NOT NULL,
-	`Feature` CHAR(3) NOT NULL,
-	`Updated` DATETIME(6) NOT NULL,
-	PRIMARY KEY (`Barcode`, `Option`, `Feature`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+DROP TABLE IF EXISTS `AreaDeliveryTimewindows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `AreaDeliveryTimewindows` (
+  `AreaDeliveryTimewindowId` int(11) NOT NULL AUTO_INCREMENT,
+  `DistributionChannelId` int(11) NOT NULL,
+  `Description` varchar(100) NOT NULL,
+  `ZipcodeFrom` varchar(6) NOT NULL,
+  `ZipcodeTo` varchar(6) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `ValidFrom` date DEFAULT NULL,
+  `ValidUntil` date DEFAULT NULL,
+  PRIMARY KEY (`AreaDeliveryTimewindowId`),
+  KEY `FK_AreaDeliveryTimewindows_DistributionChannelId` (`DistributionChannelId`),
+  CONSTRAINT `FK_AreaDeliveryTimewindows_DistributionChannelId` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script9">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents9">
-						03Processing.ParcelSizes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents9" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`ParcelSizes` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`DeliverDate` DATE NOT NULL,
-	`WidthMm` INT(11) NULL DEFAULT NULL,
-	`LengthMm` INT(11) NULL DEFAULT NULL,
-	`HeightMm` INT(11) NULL DEFAULT NULL,
-	`VolumeCm3` INT(11) NULL DEFAULT NULL,
-	`WeightGram` INT(11) NULL DEFAULT NULL,
-	`Updated` DATETIME(6) NOT NULL,
-	`RegisterDateTime` DATETIME(6) NOT NULL,
-	`SortProd` VARCHAR(50) NULL DEFAULT NULL,
-	`Productcode` VARCHAR(10) NULL DEFAULT NULL,
-	PRIMARY KEY (`Barcode`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script10">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents10">
-						03Processing.ParcelsToProcess.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents10" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS Processing.ParcelsToProcess 
-(
-	`Barcode` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`Barcode`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+--
+-- Table structure for table `Clusters`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script11">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents11">
-						03Report.FormatTime.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents11" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-DELIMITER $$
+DROP TABLE IF EXISTS `Clusters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Clusters` (
+  `ClusterId` int(11) NOT NULL,
+  `OperatorId` int(11) DEFAULT NULL,
+  `LocationId` int(11) NOT NULL,
+  `VehicleProfile` int(11) NOT NULL,
+  `DeliverFromTime` varchar(6) DEFAULT NULL,
+  `DeliverUntilTime` varchar(6) DEFAULT NULL,
+  `AvailabilityParcelsTime` varchar(6) DEFAULT NULL,
+  `TripPlanningPriorityStrategy` int(11) DEFAULT NULL,
+  `MaxTripTimeSeconds` int(11) DEFAULT NULL,
+  `NumberOfVehicles` int(11) DEFAULT NULL,
+  `VehicleCapacityVolumeCm3` int(11) DEFAULT NULL,
+  `VehicleCapacityWeightGram` int(11) DEFAULT NULL,
+  `FactorDriveTime` double DEFAULT NULL,
+  `Pictures` int(11) DEFAULT NULL,
+  `PreparationTimeMinutes` int(11) DEFAULT NULL,
+  `DebriefTimeMinutes` int(11) DEFAULT NULL,
+  `CostsPerhour` int(11) DEFAULT NULL,
+  `CostsPerKm` int(11) DEFAULT NULL,
+  `CostsPerTrip` int(11) DEFAULT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  `Active` tinyint(1) NOT NULL,
+  `ParentClusterId` int(11) DEFAULT NULL,
+  `ParcelMaxWeightGram` int(11) DEFAULT NULL,
+  `ParcelMaxVolumeCm3` int(11) DEFAULT NULL,
+  `ParcelMaxLengthCm` int(11) DEFAULT NULL,
+  `UseGoogleTravelTimeCorrection` tinyint(1) NOT NULL DEFAULT '1',
+  `CalculateExtraStopTimeArea` tinyint(1) NOT NULL DEFAULT '1',
+  `SubClusterPlanningOrder` int(11) NOT NULL DEFAULT '1',
+  `MaxDistanceToHubSeconds` int(11) NOT NULL DEFAULT '0',
+  `EscapeOnNoRouteMaxNumberOfArrivalTimeIncreasement` int(11) NOT NULL DEFAULT '0',
+  `EscapeOnNoRouteArrivalTimeIncreasementMinutes` int(11) NOT NULL DEFAULT '0',
+  `EscapeOnNoRouteMaxNumberOfVehicleIncreasement` int(11) NOT NULL DEFAULT '0',
+  `EscapeOnNoRouteVehicleIncreasementNumber` int(11) NOT NULL DEFAULT '0',
+  `MinimumNumberOfVehicles` int(11) NOT NULL DEFAULT '0',
+  `UseMinMaxNumberOfVehiclesPrognosisInFinalPlanning` tinyint(1) NOT NULL DEFAULT '0',
+  `AddExtraStopTimeAreaDueToTraffic` tinyint(1) NOT NULL DEFAULT '0',
+  `AddExtraStopTimeAreaDueToBuildingSpecifications` tinyint(1) NOT NULL DEFAULT '0',
+  `AddExtraStopTimeAreaMiscellaneous` tinyint(1) NOT NULL DEFAULT '1',
+  `ParcelDropPenaltySeconds` int(11) NOT NULL DEFAULT '0',
+  `RouteDescription` varchar(10) DEFAULT NULL,
+  `SortProdShiftDigit` int(11) DEFAULT NULL,
+  `MedeaBlsCode` varchar(10) DEFAULT NULL,
+  `AddRnaAppQRCodeToPdfTripList` tinyint(1) DEFAULT NULL,
+  `LocationNumber` varchar(10) DEFAULT NULL,
+  `NumberOfDocks` int(11) NOT NULL DEFAULT '0',
+  `DockChangeTimeMinutes` int(11) NOT NULL DEFAULT '0',
+  `ORToolsFirstSolutionStrategy` int(11) DEFAULT NULL,
+  `ORToolsLocalSearchMetaheuristic` int(11) DEFAULT NULL,
+  `ORToolsLnsTimeLimitMs` int(11) DEFAULT NULL,
+  `AlternativeTripEndPointLocationId` int(11) DEFAULT NULL COMMENT 'Alternative end point for trips (instead of roundtrip back to starting point)',
+  `DeliveryWindowEndMarginSeconds` int(11) NOT NULL DEFAULT '0',
+  `NotifyDroppedOrdersEmail` varchar(500) DEFAULT NULL,
+  `MinTripTimeSeconds` int(11) DEFAULT NULL,
+  `ORToolsSolveTimeLimitMs` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ClusterId`),
+  KEY `FK__Clusters__Distri__31B762FC` (`DistributionChannelId`),
+  KEY `FK__Clusters__Locati__339FAB6E` (`LocationId`),
+  KEY `FK__Clusters__Parent__54CB950F` (`ParentClusterId`),
+  KEY `FK__Clusters__Vehicl__5E54FF49` (`VehicleProfile`),
+  KEY `FK__Clusters__Locations__AlternativeEndPoint` (`AlternativeTripEndPointLocationId`),
+  CONSTRAINT `FK__Clusters__Distri__31B762FC` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Clusters__Locations__AlternativeEndPoint` FOREIGN KEY (`AlternativeTripEndPointLocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Clusters__Locati__339FAB6E` FOREIGN KEY (`LocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Clusters__Parent__54CB950F` FOREIGN KEY (`ParentClusterId`) REFERENCES `Clusters` (`ClusterId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Clusters__Vehicl__5E54FF49` FOREIGN KEY (`VehicleProfile`) REFERENCES `VehicleProfiles` (`VehicleProfileId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP FUNCTION IF EXISTS `Report`.`FormatTime`$$
+--
+-- Table structure for table `CombineDeliverWindowsCustomercodes`
+--
 
-CREATE FUNCTION Report.FormatTime(ParamTime VARCHAR(6)) RETURNS VARCHAR(8)
-LANGUAGE SQL
-NOT DETERMINISTIC
-CONTAINS SQL
-SQL SECURITY DEFINER
-COMMENT ''
-BEGIN
-	RETURN CASE 
-				WHEN (CHAR_LENGTH(LTRIM(IFNULL(ParamTime, ''))) < 6) THEN N'' 
-				ELSE DATE_FORMAT(STR_TO_DATE(ParamTime, '%H%i%s'), '%H:%i:%s')
-			END;
-END$$
+DROP TABLE IF EXISTS `CombineDeliverWindowsCustomercodes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CombineDeliverWindowsCustomercodes` (
+  `CombineDeliverWindowsCustomercodeId` int(11) NOT NULL AUTO_INCREMENT,
+  `DistributionChannelId` int(11) NOT NULL,
+  `Customercode` varchar(10) NOT NULL,
+  PRIMARY KEY (`CombineDeliverWindowsCustomercodeId`),
+  UNIQUE KEY `UQ_CombineDeliverWindowsCustomercodes` (`DistributionChannelId`,`Customercode`),
+  CONSTRAINT `FK_CombineDeliverWindowsCustomercodes_DistributionChannelId` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DELIMITER ;
+--
+-- Table structure for table `DistributionChannels`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script12">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents12">
-						04Configuratie.Clusters.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents12" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-/*
-Een cluster is een groepering van orders die als 1 planningsvraagstuk in routes moet worden gepland. Aan een cluster zijn ook weer specifieke eigenschappen toegekend.
-Voor avondbezorging is vertreklocatie:cluster 1:1, voor daglevering kan dit anders zijn
-*/
-CREATE TABLE Configuratie.Clusters
-(
-	ClusterId INT NOT NULL PRIMARY KEY,
-	OperatorId INT NULL,
-	PlanningConfiguratieId INT NOT NULL, /* Referentie naar soort planning inclusief instellingen die gebruikt moet worden */
-	VertrekLocatieId INT NOT NULL, /* Verwijzing naar vertreklocatie waarvandaan de ritten moeten vertrekken en waar ze na afloop naartoe terug moeten keren. */
-	VoertuigProfiel INT NOT NULL, /* Welk voertuig profiel in OSRM gebruikt dient te worden */ 
-	BezorgenVan VARCHAR(6),
-	BezorgenTot VARCHAR(6),
-	BeschikbaarheidZendingen VARCHAR(6),
-	VertrekRitten INT, 
-	UitersteRitduur INT NULL, /* Maximale ritduur */
-	VertrekTijdstip VARCHAR(6) NULL, /* Tijdstip vanaf hoe laat kan worden vertrokken vanaf de vertreklocatie */
-	AantalVoertuigen INT NULL, /* Maximaal aantal voertuigen dat ingezet mag worden in de planning (voor avondritten op bijvoorbeeld 200 zetten) */
-	CapaciteitVoertuigenVolume INT NULL, /* Dit is de totale capaciteit van het voertuig (hoeveel hij mee kan nemen). De eenheid die hier wordt gebruikt, moet overeenkomen met de eenheid dit per order wordt opgegeven. Dus voor avond in m^3. Effectief laadvermogen van een NLI geschikte bus is ongeveer 6,5 m^3 */
-	CapaciteitVoertuigenGewicht INT NULL, /* Dit is de totale capaciteit van het voertuig (hoeveel hij mee kan nemen). De eenheid die hier wordt gebruikt, moet overeenkomen met de eenheid dit per order wordt opgegeven. Dus voor avond in kg. Effectief laadvermogen van een NLI geschikte bus is ongeveer 1000 kg */
-	RijtijdFactor FLOAT NULL, /* Indien nodig kan de rijtijd van alle afstanden die gebruikt worden in de planning met deze factor opgehoogd worden. */
-	Plaatjes INT NULL, /* Boolean om aan te geven of je wel of geen plaatjes wilt laten maken */
-	VoorbereidingstijdMinuten INT NULL, /* De tijd die de chauffeur bezig is met laden etc.. Voordat hij kan vertrekken (bij avond 15 minuten) */
-	DebriefTijdMinuten INT NULL, /* De tijd die de chauffeur bezig is bij de debrief (bij avond 15 minuten) */
-	KostenPerUur INT NULL, /* voor avond niet relevant, wel voor scenario bepalingen */
-	KostenPerKm INT NULL, /* voor avond niet relevant, wel voor scenario bepalingen */
-	KostenPerInTeZettenRit INT NULL, /* voor avond niet relevant, wel voor scenario bepalingen */
-	RittenSchuiven INT NULL, /* Hiermee kun je aangeven of je ritten zoveel mogelijk naar voren wilt schuiven, zoveel mogelijk naar achteren of dat je de vertrektijd wilt fixeren. */
-	DistributionChannelId INT,
-	/*
-	Vertrek ritten ("zo vroeg mogelijk" of "zoveel mogelijk tegelijk" )
-	1 = zo vroeg mogelijk
-	2 = zoveel mogelijk tegelijk
-	3 = zo laat mogelijk
-	*/
-	Actief BIT NOT NULL
-)
+DROP TABLE IF EXISTS `DistributionChannels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `DistributionChannels` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `DistributionChannelCode` varchar(5) NOT NULL,
+  `RouteGroupCode` int(11) NOT NULL,
+  `Description` varchar(100) NOT NULL,
+  `UseAllInputFilesForFinalPlanning` int(11) DEFAULT NULL,
+  `IgnoreInputFiles` tinyint(1) NOT NULL DEFAULT '0',
+  `InsertParcelSizesAsParcels` tinyint(1) NOT NULL DEFAULT '0',
+  `ExportTactischPlan` tinyint(1) NOT NULL DEFAULT '0',
+  `VolgJePakket` tinyint(1) NOT NULL DEFAULT '0',
+  `DistributionChannelKenmerk` varchar(3) DEFAULT NULL,
+  `InsertParcelsAsParcelSizes` tinyint(1) NOT NULL DEFAULT '0',
+  `ImportDeliverDateAdjustOneWeekDay` int(11) NOT NULL DEFAULT '-1',
+  `ImportDeliverDateForceWeekDay` int(11) NOT NULL DEFAULT '-1',
+  `CommercialTimeWindowFrom` varchar(6) DEFAULT NULL,
+  `CommercialTimeWindowUntil` varchar(6) DEFAULT NULL,
+  `TimeSlotIndicationMinMinutes` int(11) NOT NULL DEFAULT '0',
+  `TimeSlotIndicationPlusMinutes` int(11) NOT NULL DEFAULT '0',
+  `TimeSlotIndicationRoundAtMinutes` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`DistributionChannelId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `ExtraStopTimeOptionFeatureDeliveryTimeWindows`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script13">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents13">
-						04Configuratie.Ritcodes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents13" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-/*
-Een cluster is een groepering van orders die als 1 planningsvraagstuk in routes moet worden gepland. Aan een cluster zijn ook weer specifieke eigenschappen toegekend.
-Voor avondbezorging is vertreklocatie:cluster 1:1, voor daglevering kan dit anders zijn
-*/
-CREATE TABLE Configuratie.Ritcodes
-(
-	RitcodeId INT  PRIMARY KEY,
-	SortOrder INT,
-	Ritcode VARCHAR(4),
-	DistributionChannelId INT,
-	VertrekLocatieId INT
-)
+DROP TABLE IF EXISTS `ExtraStopTimeOptionFeatureDeliveryTimeWindows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ExtraStopTimeOptionFeatureDeliveryTimeWindows` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `Option` char(3) NOT NULL,
+  `Feature` char(3) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`DistributionChannelId`,`Option`,`Feature`),
+  CONSTRAINT `FK__ExtraStop__Distr__5090EFD7` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__ExtraStop__Distr__52793849` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `ExtraStopTimeOptionFeatures`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script14">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents14">
-						04Configuration.AddressDeliveryTimeWindows.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents14" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`AddressDeliveryTimeWindows` (
-	`DistributionChannelId` INT(11) NOT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	PRIMARY KEY (`DistributionChannelId`, `Zipcode`, `Housenumber`, `Extension`)
-);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script15">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents15">
-						04Configuration.AreaDeliveryTimewindows.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents15" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`AreaDeliveryTimewindows` (
-	`AreaDeliveryTimewindowId` INT(11) NOT NULL AUTO_INCREMENT,
-	`DistributionChannelId` INT(11) NOT NULL,
-	`Description` VARCHAR(100) NOT NULL,
-	`ZipcodeFrom` VARCHAR(6) NOT NULL,
-	`ZipcodeTo` VARCHAR(6) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`ValidFrom` DATE NULL,
-	`ValidUntil` DATE NULL,
-	PRIMARY KEY (`AreaDeliveryTimewindowId`),
-	CONSTRAINT `FK_AreaDeliveryTimewindows_DistributionChannelId` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+DROP TABLE IF EXISTS `ExtraStopTimeOptionFeatures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ExtraStopTimeOptionFeatures` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `Option` char(3) NOT NULL,
+  `Feature` char(3) NOT NULL,
+  `ExtraStopTimeSeconds` int(11) NOT NULL,
+  PRIMARY KEY (`DistributionChannelId`,`Option`,`Feature`),
+  CONSTRAINT `FK__ExtraStop__Distr__5555A4F4` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__ExtraStop__Distr__573DED66` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script16">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents16">
-						04Configuration.ExtraStoptijdAreas.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents16" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`ExtraStoptimeAreas` (
-	`ExtraStopTimeAreaId` INT(11) NOT NULL AUTO_INCREMENT,
-	`ZipcodeFrom` CHAR(6) NOT NULL,
-	`ZipcodeTo` CHAR(6) NOT NULL,
-	`ExtraStoptimeSeconds` INT(11) NOT NULL,
-	`FactorDriveTime` DOUBLE NOT NULL,
-	`Appendix` VARCHAR(255) NULL DEFAULT NULL,
-	`ModifiedBy` VARCHAR(100) NULL DEFAULT NULL,
-	`ProcessManager` VARCHAR(100) NULL DEFAULT NULL,
-	`DateModified` DATETIME(6) NULL DEFAULT NULL,
-	`ExtraStoptimeDueToTrafficInSeconds` INT(11) NULL DEFAULT NULL,
-	`ExtraStoptimeDueToBuildingSpecificationsInSeconds` INT(11) NULL DEFAULT NULL,
-	`CreatedOn` DATETIME(6) NULL DEFAULT NULL,
-	`ModifiedOn` DATETIME(6) NULL DEFAULT NULL,
-	`DistributionChannelId` INT(11) NOT NULL,
-	PRIMARY KEY (`ExtraStopTimeAreaId`),
-	INDEX `FK_ExtraStoptimeAreas_DistributionChannels` (`DistributionChannelId`)
-);
+--
+-- Table structure for table `ExtraStoptimeAreas`
+--
 
-select if (
-    exists(
-        select distinct index_name from information_schema.statistics 
-        where table_schema = 'Configuration' 
-        and table_name = 'ExtraStoptimeAreas' and index_name like 'IDX_ExtraStoptimeAreas'
-    )
-    ,'select ''index IDX_ExtraStoptimeAreas exists'' _______;'
-    ,'CREATE UNIQUE INDEX IF NOT EXISTS IDX_ExtraStoptimeAreas ON Configuration.ExtraStoptimeAreas (DistributionChannelId, ZipcodeFrom, ZipcodeTo);') into @a;
-PREPARE stmt1 FROM @a;
-EXECUTE stmt1;
-DEALLOCATE PREPARE stmt1;
+DROP TABLE IF EXISTS `ExtraStoptimeAreas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ExtraStoptimeAreas` (
+  `ExtraStopTimeAreaId` int(11) NOT NULL AUTO_INCREMENT,
+  `ZipcodeFrom` char(6) NOT NULL,
+  `ZipcodeTo` char(6) NOT NULL,
+  `ExtraStoptimeSeconds` int(11) NOT NULL,
+  `FactorDriveTime` double NOT NULL,
+  `Appendix` varchar(255) DEFAULT NULL,
+  `ModifiedBy` varchar(100) DEFAULT NULL,
+  `ProcessManager` varchar(100) DEFAULT NULL,
+  `DateModified` datetime(6) DEFAULT NULL,
+  `ExtraStoptimeDueToTrafficInSeconds` int(11) DEFAULT NULL,
+  `ExtraStoptimeDueToBuildingSpecificationsInSeconds` int(11) DEFAULT NULL,
+  `CreatedOn` datetime(6) DEFAULT NULL,
+  `ModifiedOn` datetime(6) DEFAULT NULL,
+  `DistributionChannelId` int(11) NOT NULL,
+  `CreatedByCognitoUser` varchar(128) DEFAULT NULL,
+  `ModifiedByCognitoUser` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`ExtraStopTimeAreaId`),
+  UNIQUE KEY `IDX_ExtraStoptimeAreas` (`DistributionChannelId`,`ZipcodeFrom`,`ZipcodeTo`),
+  CONSTRAINT `FK_ExtraStoptimeAreas_DistributionChannels` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=131652 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `ExtraStoptimeProducts`
+--
 
-ALTER TABLE Configuration.ExtraStoptimeAreas ADD `CreatedByCognitoUser` VARCHAR(128) NULL DEFAULT NULL;
-ALTER TABLE Configuration.ExtraStoptimeAreas ADD `ModifiedByCognitoUser` VARCHAR(128) NULL DEFAULT NULL;
+DROP TABLE IF EXISTS `ExtraStoptimeProducts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ExtraStoptimeProducts` (
+  `ArticlenumberMedea` varchar(10) NOT NULL,
+  `Productcode` varchar(10) NOT NULL,
+  `ExtraStoptimeSeconds` int(11) NOT NULL,
+  `DistributionChannelId` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ArticlenumberMedea`,`DistributionChannelId`),
+  KEY `FK__ExtraStop__Distr__3B95D2F1` (`DistributionChannelId`),
+  CONSTRAINT `FK__ExtraStop__Distr__3B95D2F1` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script17">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents17">
-						04Configuration.ExtraStoptijdProducts.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents17" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`ExtraStoptimeProducts` (
-	`ArticlenumberMedea` VARCHAR(10) NOT NULL,
-	`Productcode` VARCHAR(10) NOT NULL,
-	`ExtraStoptimeSeconds` INT(11) NOT NULL,
-	`DistributionChannelId` INT(11) NOT NULL DEFAULT '1',
-	PRIMARY KEY (`ArticlenumberMedea`, `DistributionChannelId`),
-	INDEX `FK__ExtraStop__Distr__3B95D2F1` (`DistributionChannelId`)
-);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script18">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents18">
-						04Configuration.LocationDistributionChannels.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents18" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`LocationDistributionChannels` (
-	`LocationId` INT(11) NOT NULL,
-	`DistributionChannelId` INT(11) NOT NULL,
-	`CDate` DATETIME(6) NOT NULL,
-	PRIMARY KEY (`LocationId`, `DistributionChannelId`),
-	INDEX `FK__LocationD__Distr__6ADAD1BF` (`DistributionChannelId`)
-);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script19">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents19">
-						04Configuration.PluginSchedules.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents19" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`PluginSchedules` (
-	`PluginScheduleId` VARCHAR(64) NOT NULL,
-	`DistributionChannelId` INT(11) NOT NULL,
-	`Locations` VARCHAR(100) NOT NULL,
-	`DeliverDate` DATE NULL DEFAULT NULL,
-	`ExecuteOnce` TINYINT(1) NOT NULL,
-	`ExecuteAt` TIME(6) NOT NULL,
-	`LastRun` DATETIME(6) NULL DEFAULT NULL,
-	`PlanningType` INT(11) NOT NULL,
-	`Name` VARCHAR(100) NOT NULL,
-	`StartedAt` DATETIME(6) NULL DEFAULT NULL,
-	`PluginDirectories` VARCHAR(100) NULL DEFAULT NULL,
-	CreatedByCognitoUser varchar(128),
-	PRIMARY KEY (`PluginScheduleId`),
-	UNIQUE INDEX `PluginScheduleId` (`PluginScheduleId`),
-	INDEX `FK__PluginSch__Distr__7EE1CA6C` (`DistributionChannelId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+--
+-- Table structure for table `GlobalConfigurationSettings`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script20">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents20">
-						04Configuration.Tripcodes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents20" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`Tripcodes` (
-	`TripcodeId` INT(11) NOT NULL AUTO_INCREMENT,
-	`SortOrder` INT(11) NULL DEFAULT NULL,
-	`TripcodeData` VARCHAR(4) NULL DEFAULT NULL,
-	`DistributionChannelId` INT(11) NULL DEFAULT NULL,
-	`LocationId` INT(11) NULL DEFAULT NULL,
-	`AlternativeTripEndPointLocationId` INT(11) NULL DEFAULT NULL COMMENT 'Alternative end point for trips (instead of roundtrip back to starting point)',
-	PRIMARY KEY (`TripcodeId`),
-	INDEX `FK__Tripcodes__Distr__367C1819` (`DistributionChannelId`),
-	INDEX `FK__Tripcodes__Locat__37703C52` (`LocationId`),
-	INDEX `FK__Tripcodes__Locations__AlternativeEndPoint` (`AlternativeTripEndPointLocationId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=17463
-;
+DROP TABLE IF EXISTS `GlobalConfigurationSettings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `GlobalConfigurationSettings` (
+  `SettingName` varchar(100) NOT NULL,
+  `SettingValue` varchar(500) NOT NULL,
+  PRIMARY KEY (`SettingName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-IF NOT EXISTS(SELECT 1 FROM information_schema.COLUMNS 
-		WHERE TABLE_SCHEMA = 'Configuration' 
-		AND TABLE_NAME = 'Tripcodes' 
-		AND COLUMN_NAME = 'AlternativeTripEndPointLocationId') THEN
-	ALTER TABLE Configuration.Tripcodes ADD `AlternativeTripEndPointLocationId` INT(11) NULL DEFAULT NULL COMMENT 'Alternative end point for trips (instead of roundtrip back to starting point)';
-END IF;
+--
+-- Table structure for table `LocationDistributionChannels`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script21">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents21">
-						04Feit.ObjectValues.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents21" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.ObjectValues
-(
-	ObjectValueId BIGINT NOT NULL  PRIMARY KEY,
-	ParentObjectValueId BIGINT NULL,
-	ObjectItemId BIGINT NOT NULL,
-	Row INT,
-	Name NVARCHAR(100),
-	Value VARBINARY(MAX)
-)
+DROP TABLE IF EXISTS `LocationDistributionChannels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `LocationDistributionChannels` (
+  `LocationId` int(11) NOT NULL,
+  `DistributionChannelId` int(11) NOT NULL,
+  `CDate` datetime(6) NOT NULL,
+  PRIMARY KEY (`LocationId`,`DistributionChannelId`),
+  KEY `FK__LocationD__Distr__6ADAD1BF` (`DistributionChannelId`),
+  CONSTRAINT `FK__LocationD__Distr__6ADAD1BF` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__LocationD__Locat__6BCEF5F8` FOREIGN KEY (`LocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `LocationZipcodes`
+--
 
-CREATE INDEX IDX_OBJECTVALUES_OBJECTITEMID ON Feit.ObjectValues (ObjectItemId);
+DROP TABLE IF EXISTS `LocationZipcodes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `LocationZipcodes` (
+  `LocationZipcodeId` int(11) NOT NULL AUTO_INCREMENT,
+  `LocationId` int(11) NOT NULL,
+  `ZipcodeFrom` char(6) NOT NULL,
+  `ZipcodeTo` char(6) NOT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`LocationZipcodeId`),
+  KEY `FK__LocationZ__Locat__208CD6FA` (`LocationId`),
+  KEY `FK__LocationZ__Distr__2180FB33` (`DistributionChannelId`),
+  CONSTRAINT `FK__LocationZ__Distr__2180FB33` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__LocationZ__Locat__208CD6FA` FOREIGN KEY (`LocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3962 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script22">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents22">
-						04configuration.AreaDeliveryTimewindows.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents22" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`AreaDeliveryTimewindows` (
-	`AreaDeliveryTimewindowId` INT(11) NOT NULL AUTO_INCREMENT,
-	`DistributionChannelId` INT(11) NOT NULL,
-	`Description` VARCHAR(100) NOT NULL,
-	`ZipcodeFrom` VARCHAR(6) NOT NULL,
-	`ZipcodeTo` VARCHAR(6) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`ValidFrom` DATE NULL,
-	`ValidUntil` DATE NULL,
-	PRIMARY KEY (`AreaDeliveryTimewindowId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+--
+-- Table structure for table `Locations`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script23">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents23">
-						05Configuration.AddressMappings.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents23" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE `Configuration`.`AddressMappings` (
-	`AddressMappingId` INT NOT NULL AUTO_INCREMENT,
-	`DistributionChannelId` INT(11) NOT NULL,
-	`OriginalZipcode` VARCHAR(10) NOT NULL,
-	`OriginalHouseNr` INT(11) NOT NULL,
-	`OriginalExtension` VARCHAR(100) NOT NULL DEFAULT '',
-	`MappedZipcode` VARCHAR(10) NOT NULL,
-	`MappedStreet` VARCHAR(100) NOT NULL DEFAULT '',
-	`MappedHouseNr` INT(11) NOT NULL,
-	`MappedExtension` VARCHAR(100) NOT NULL DEFAULT '',
-	`MappedCity` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`AddressMappingId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script24">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents24">
-						05Configuration.CombineDeliverWindowsCustomercodes.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents24" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Configuration.CombineDeliverWindowsCustomercodes (
-	CombineDeliverWindowsCustomercodeId INT NOT NULL AUTO_INCREMENT,
-	DistributionChannelId INT NOT NULL,
-	Customercode VARCHAR(10) NOT NULL
-);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script25">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents25">
-						05Configuration.ZipcodeGroups.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents25" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Configuration`.`ZipcodeGroups` (
-	`ZipcodeFrom` CHAR(6) NOT NULL,
-	`ZipcodeTo` CHAR(6) NOT NULL,
-	`GroupName` VARCHAR(100) NULL DEFAULT NULL,
-	`ClusterId` INT(11) NOT NULL,
-	PRIMARY KEY (`ZipcodeFrom`, `ClusterId`),
-	INDEX `FK__ZipcodeGr__Clust__5A846E65` (`ClusterId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+DROP TABLE IF EXISTS `Locations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Locations` (
+  `LocationId` int(11) NOT NULL,
+  `LocationCode` varchar(10) CHARACTER SET utf8mb4 NOT NULL,
+  `Depot` varchar(50) DEFAULT NULL,
+  `Lat` double DEFAULT NULL,
+  `Lon` double DEFAULT NULL,
+  `Zipcode` varchar(10) DEFAULT NULL,
+  `GISX` bigint(20) DEFAULT NULL,
+  `GISY` bigint(20) DEFAULT NULL,
+  `City` varchar(50) DEFAULT NULL,
+  `Street` varchar(50) DEFAULT NULL,
+  `Housenumber` varchar(50) DEFAULT NULL,
+  `WarehouseReference` int(11) DEFAULT NULL,
+  `HubSystemLocation` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`LocationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script26">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents26">
-						05Fact.RoutePlans.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents26" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`RoutePlans` (
-	`RoutePlanId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`ClusterId` INT(11) NOT NULL,
-	`RouteDate` DATE NOT NULL,
-	`RouteType` INT(11) NOT NULL,
-	`RoutePlanCreated` DATETIME(6) NULL DEFAULT NULL,
-	`PlanningType` INT(11) NULL DEFAULT NULL,
-	`XmlExported` DATETIME(6) NULL DEFAULT NULL,
-	`SolveTimeMs` BIGINT(20) NULL DEFAULT NULL,
-	`NumberOfTrips` INT(11) NULL DEFAULT NULL,
-	`NumberOfStops` INT(11) NULL DEFAULT NULL,
-	`UsedSoftwareVersion` VARCHAR(20) NULL DEFAULT NULL,
-	`UsedSoftwareDate` DATETIME(6) NULL DEFAULT NULL,
-	`TotalTravelTimeSeconds` BIGINT(20) NULL DEFAULT NULL,
-	PRIMARY KEY (`RoutePlanId`),
-	INDEX `FK__RoutePlan__Clust__3D2915A8` (`ClusterId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=321
-;
+--
+-- Table structure for table `PlanningConfigurationSettings`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script27">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents27">
-						05Feit.RoutePlans.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents27" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.RoutePlans
-(
-	RoutePlanId BIGINT NOT NULL  PRIMARY KEY,
-	ClusterId INT NOT NULL,
-	Datum DATE NOT NULL,
-	RouteType INT NOT NULL, /* 1= avondbezorging, 2 = voor later */
-	DistanceMatrix varbinary(max)
-)
+DROP TABLE IF EXISTS `PlanningConfigurationSettings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `PlanningConfigurationSettings` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `SettingName` varchar(100) NOT NULL,
+  `SettingValue` varchar(500) NOT NULL,
+  `IsTechnicalSetting` tinyint(4) DEFAULT '0',
+  `Description` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`DistributionChannelId`,`SettingName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `PluginSchedules`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script28">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents28">
-						05Processing.RoutePlans.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents28" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`RoutePlans` (
-	`RoutePlanId` BIGINT(20) NOT NULL,
-	`ClusterId` INT(11) NOT NULL,
-	`RouteDate` DATE NOT NULL,
-	`RouteType` INT(11) NOT NULL,
-	`RoutePlanCreated` DATETIME(6) NULL DEFAULT NULL,
-	`PlanningType` INT(11) NULL DEFAULT NULL,
-	`XmlExported` DATETIME(6) NULL DEFAULT NULL,
-	`SolveTimeMs` BIGINT(20) NULL DEFAULT NULL,
-	`NumberOfTrips` INT(11) NULL DEFAULT NULL,
-	`NumberOfStops` INT(11) NULL DEFAULT NULL,
-	`UsedSoftwareVersion` VARCHAR(20) NULL DEFAULT NULL,
-	`UsedSoftwareDate` DATETIME(6) NULL DEFAULT NULL,
-	`TotalTravelTimeSeconds` BIGINT(20) NULL DEFAULT NULL,
-	PRIMARY KEY (`RoutePlanId`),
-	INDEX `FK__RoutePlan__Clust__668030F6` (`ClusterId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+DROP TABLE IF EXISTS `PluginSchedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `PluginSchedules` (
+  `PluginScheduleId` varchar(64) NOT NULL,
+  `DistributionChannelId` int(11) NOT NULL,
+  `Locations` varchar(100) NOT NULL,
+  `DeliverDate` date DEFAULT NULL,
+  `ExecuteOnce` tinyint(1) NOT NULL,
+  `ExecuteAt` time(6) NOT NULL,
+  `LastRun` datetime(6) DEFAULT NULL,
+  `PlanningType` int(11) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `StartedAt` datetime(6) DEFAULT NULL,
+  `PluginDirectories` varchar(100) DEFAULT NULL,
+  `CreatedByCognitoUser` varchar(128) DEFAULT NULL,
+  `TripIds` varchar(100) DEFAULT NULL,
+  `PluginName` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`PluginScheduleId`),
+  UNIQUE KEY `PluginScheduleId` (`PluginScheduleId`),
+  KEY `FK__PluginSch__Distr__7EE1CA6C` (`DistributionChannelId`),
+  CONSTRAINT `FK__PluginSch__Distr__7EE1CA6C` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script29">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents29">
-						05Report.RoutePlans.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents29" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`RoutePlans` (
-	`RoutePlanId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`ClusterId` INT(11) NOT NULL,
-	`RouteDate` DATE NOT NULL,
-	`RouteType` INT(11) NOT NULL,
-	`RoutePlanCreated` DATETIME(6) NULL DEFAULT NULL,
-	`PlanningType` INT(11) NULL DEFAULT NULL,
-	`XmlExported` DATETIME(6) NULL DEFAULT NULL,
-	`SolveTimeMs` BIGINT(20) NULL DEFAULT NULL,
-	`NumberOfTrips` INT(11) NULL DEFAULT NULL,
-	`NumberOfStops` INT(11) NULL DEFAULT NULL,
-	`OriginalRoutePlanId` BIGINT(20) NOT NULL,
-	`UsedSoftwareVersion` VARCHAR(20) NULL DEFAULT NULL,
-	`UsedSoftwareDate` DATETIME(6) NULL DEFAULT NULL,
-	`TotalTravelTimeSeconds` BIGINT(20) NULL DEFAULT NULL,
-	PRIMARY KEY (`RoutePlanId`),
-	INDEX `IDX_Report_RoutePlans_ClusterId` (`ClusterId`),
-	INDEX `IDX_Report_RoutePlans_OriginalRoutePlanId` (`OriginalRoutePlanId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=30
-;
+--
+-- Table structure for table `ProductCodeDeliveryTimeWindows`
+--
 
-ALTER TABLE Report.RoutePlans ADD CONSTRAINT UQ_ReportRoutePlans_ClusterId_RouteDate_PlanningType UNIQUE KEY (`ClusterId`, `RouteDate`, `PlanningType`);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script30">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents30">
-						06Fact.Trips.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents30" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`Trips` (
-	`TripId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`DepartureTime` VARCHAR(6) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`RoutePlanId` BIGINT(20) NOT NULL,
-	`TripNumber` INT(11) NOT NULL,
-	`DistanceFromLastStop` DOUBLE NULL DEFAULT NULL,
-	PRIMARY KEY (`TripId`),
-	INDEX `FK__Trips__RoutePlan__43D61337` (`RoutePlanId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+DROP TABLE IF EXISTS `ProductCodeDeliveryTimeWindows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ProductCodeDeliveryTimeWindows` (
+  `DistributionChannelId` int(11) NOT NULL,
+  `ProductCode` char(4) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`DistributionChannelId`,`ProductCode`),
+  CONSTRAINT `FK__ProductCo__Distr__5A1A5A11` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script31">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents31">
-						06Feit.Stops.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents31" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.Stops
-(
-	StopId BIGINT NOT NULL  PRIMARY KEY,
-	ObjectItemId BIGINT NULL,
-	Straat VARCHAR(100) NULL,
-	Huisnummer INT NOT NULL,
-	Toevoeging VARCHAR(100) NULL,
-	Postcode VARCHAR(10) NOT NULL,
-	Plaatsnaam VARCHAR(50) NOT NULL,
-	Land CHAR(2) NOT NULL, /* ISO country code */ 
-	Lat FLOAT NULL,
-	Lon FLOAT NULL,
-	TripId BIGINT NULL,
-/* De handling tijd dat de bezorger bezig is aan deze stop vanaf het moment dat hij stopt met rijden, totdat hij weer kan vertrekken */
-	VerwachteAankomst VARCHAR(6) NULL, /* Berekende aankomst */
-	Datum DATE NOT NULL,
-	RouteType INT NOT NULL, /* 1= avondbezorging, 2 = voor later */
-	RoutePlanId BIGINT NULL
-)
+--
+-- Table structure for table `Tripcodes`
+--
 
+DROP TABLE IF EXISTS `Tripcodes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Tripcodes` (
+  `TripcodeId` int(11) NOT NULL AUTO_INCREMENT,
+  `SortOrder` int(11) DEFAULT NULL,
+  `TripcodeData` varchar(4) DEFAULT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  `LocationId` int(11) DEFAULT NULL,
+  `AlternativeTripEndPointLocationId` int(11) DEFAULT NULL COMMENT 'Alternative end point for trips (instead of roundtrip back to starting point)',
+  PRIMARY KEY (`TripcodeId`),
+  KEY `FK__Tripcodes__Distr__367C1819` (`DistributionChannelId`),
+  KEY `FK__Tripcodes__Locat__37703C52` (`LocationId`),
+  KEY `FK__Tripcodes__Locations__AlternativeEndPoint` (`AlternativeTripEndPointLocationId`),
+  CONSTRAINT `FK__Tripcodes__Distr__367C1819` FOREIGN KEY (`DistributionChannelId`) REFERENCES `DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Tripcodes__Locations__AlternativeEndPoint` FOREIGN KEY (`AlternativeTripEndPointLocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Tripcodes__Locat__37703C52` FOREIGN KEY (`LocationId`) REFERENCES `Locations` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=52712 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE INDEX IDX_STOPS_POSTCODE_HUISNUMMER ON Feit.Stops (Postcode, Huisnummer);
+--
+-- Table structure for table `VehicleProfiles`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script32">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents32">
-						06Feit.Trips.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents32" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.Trips
-(
-	TripId BIGINT NOT NULL  PRIMARY KEY,
-	VertrekTijdstip VARCHAR(6) NULL,
-	VerwachteAankomst VARCHAR(6), /* Berekende aankomst */
-	RoutePlanId BIGINT NOT NULL,
-	Ritnummer INT NOT NULL
-)
+DROP TABLE IF EXISTS `VehicleProfiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `VehicleProfiles` (
+  `VehicleProfileId` int(11) NOT NULL,
+  `VehicleProfilename` varchar(100) NOT NULL,
+  `OSRMServer` varchar(100) DEFAULT NULL,
+  `OSRMPort` int(11) DEFAULT NULL,
+  PRIMARY KEY (`VehicleProfileId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `ZipcodeGroups`
+--
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script33">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents33">
-						06Processing.Trips.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents33" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`Trips` (
-	`TripId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`DepartureTime` VARCHAR(6) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`RoutePlanId` BIGINT(20) NULL,
-	`TripNumber` INT(11) NOT NULL,
-	`DistanceFromLastStop` DOUBLE NULL DEFAULT NULL,
-	PRIMARY KEY (`TripId`),
-	INDEX `FK__Trips__RoutePlan__6B44E613` (`RoutePlanId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=3690
-;
+DROP TABLE IF EXISTS `ZipcodeGroups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ZipcodeGroups` (
+  `ZipcodeFrom` char(6) NOT NULL,
+  `ZipcodeTo` char(6) NOT NULL,
+  `GroupName` varchar(100) DEFAULT NULL,
+  `ClusterId` int(11) NOT NULL,
+  PRIMARY KEY (`ZipcodeFrom`,`ClusterId`),
+  KEY `FK__ZipcodeGr__Clust__5A846E65` (`ClusterId`),
+  CONSTRAINT `FK__ZipcodeGr__Clust__5A846E65` FOREIGN KEY (`ClusterId`) REFERENCES `Clusters` (`ClusterId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script34">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents34">
-						06Report.Trips.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents34" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`Trips` (
-	`TripId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`DepartureTime` VARCHAR(6) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`RoutePlanId` BIGINT(20) NOT NULL,
-	`TripNumber` INT(11) NOT NULL,
-	`DistanceFromLastStop` DOUBLE NULL DEFAULT NULL,
-	`OriginalTripId` BIGINT(20) NOT NULL,
-	`Tripcode` VARCHAR(4) NULL DEFAULT NULL,
-	`TripListPdfFilename` VARCHAR(250) NULL DEFAULT NULL,
-	`PlannedType` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`TripId`),
-	INDEX `IDX_Report_Trips_RoutePlanId` (`RoutePlanId`),
-	INDEX `IDX_Report_Trips_OriginalTripId` (`OriginalTripId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=21313
-;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script35">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents35">
-						06Report.TripsExported.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents35" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`TripsExported` (
-	`OriginalTripId` BIGINT(20) NOT NULL,
-	`ExportType` INT(11) NOT NULL,
-	`Exported` DATETIME(6) NULL DEFAULT NULL,
-	PRIMARY KEY (`OriginalTripId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
+-- Dump completed on 2020-02-03 14:49:26
 
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script36">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents36">
-						07Fact.Stops.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents36" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`Stops` (
-	`StopId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`ObjectItemId` BIGINT(20) NULL DEFAULT NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`City` VARCHAR(50) NOT NULL,
-	`Country` CHAR(2) NOT NULL,
-	`Lat` DOUBLE NULL DEFAULT NULL,
-	`Lon` DOUBLE NULL DEFAULT NULL,
-	`TripId` BIGINT(20) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`StopDate` DATE NOT NULL,
-	`RouteType` INT(11) NOT NULL,
-	`RoutePlanId` BIGINT(20) NULL DEFAULT NULL,
-	`DistributionChannelId` INT(11) NULL DEFAULT NULL,
-	`Distance` DOUBLE NULL DEFAULT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	`ReadyForPlanning` TINYINT(1) NOT NULL DEFAULT '0',
-	PRIMARY KEY (`StopId`),
-	INDEX `IDX_STOPS_Zipcode_Housenumber` (`Zipcode`, `Housenumber`),
-	INDEX `IDX_STOPS_ROUTEPLANID` (`RoutePlanId`),
-	INDEX `IDX_STOPS_TRIPID` (`TripId`),
-	INDEX `IDX_STOPS_OBJECTITEMID` (`ObjectItemId`),
-	INDEX `FK__Stops__Distribut__498EEC8D` (`DistributionChannelId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=22935
-;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script37">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents37">
-						07Feit.Visits.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents37" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.Visits
-(
-	VisitId BIGINT NOT NULL  PRIMARY KEY,
-	StopId BIGINT NOT NULL,
-	Straat VARCHAR(100) NULL,
-	Huisnummer INT NOT NULL,
-	Toevoeging VARCHAR(100) NULL,
-	Postcode VARCHAR(10) NOT NULL,
-	Plaatsnaam VARCHAR(50) NOT NULL,
-	Land CHAR(2) NOT NULL/* ISO country code */ 
-	
-)
-
-
-CREATE INDEX IDX_VISITS_POSTCODE_HUISNUMMER ON Feit.Visits (Postcode, Huisnummer);
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script38">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents38">
-						07Processing.Stops.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents38" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`Stops` (
-	`StopId` BIGINT(20) NOT NULL,
-	`ObjectItemId` BIGINT(20) NULL DEFAULT NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`City` VARCHAR(50) NOT NULL,
-	`Country` CHAR(2) NOT NULL,
-	`Lat` DOUBLE NULL DEFAULT NULL,
-	`Lon` DOUBLE NULL DEFAULT NULL,
-	`TripId` BIGINT(20) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`StopDate` DATE NOT NULL,
-	`RouteType` INT(11) NOT NULL,
-	`RoutePlanId` BIGINT(20) NULL DEFAULT NULL,
-	`DistributionChannelId` INT(11) NULL DEFAULT NULL,
-	`Distance` DOUBLE NULL DEFAULT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`StopId`),
-	INDEX `IDX_PROCESSING_STOPS_ROUTEPLANID` (`RoutePlanId`),
-	INDEX `IDX_PROCESSING_STOPS_TRIPID` (`TripId`),
-	INDEX `IDX_PROCESSING_STOPS_Zipcode_Housenumber` (`Zipcode`, `Housenumber`),
-	INDEX `IDX_PROCESSING_STOPS_OBJECTITEMID` (`ObjectItemId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-ALTER TABLE `Processing`.`Stops`
-	ADD COLUMN `DeliverFrom2` VARCHAR(6) NULL AFTER `ExtensionOriginalValue`,
-	ADD COLUMN `DeliverUntil2` VARCHAR(6) NULL AFTER `DeliverFrom2`;
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script39">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents39">
-						07Report.Stops.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents39" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`Stops` (
-	`StopId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`ObjectItemId` BIGINT(20) NULL DEFAULT NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NULL DEFAULT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NULL DEFAULT NULL,
-	`City` VARCHAR(50) NULL DEFAULT NULL,
-	`Country` CHAR(2) NULL DEFAULT NULL,
-	`Lat` DOUBLE NULL DEFAULT NULL,
-	`Lon` DOUBLE NULL DEFAULT NULL,
-	`TripId` BIGINT(20) NULL DEFAULT NULL,
-	`ExpectedArrivalTime` VARCHAR(6) NULL DEFAULT NULL,
-	`StopDate` DATE NULL DEFAULT NULL,
-	`RouteType` INT(11) NULL DEFAULT NULL,
-	`RoutePlanId` BIGINT(20) NULL DEFAULT NULL,
-	`DistributionChannelId` INT(11) NULL DEFAULT NULL,
-	`Distance` DOUBLE NULL DEFAULT NULL,
-	`OriginalStopId` BIGINT(20) NULL DEFAULT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`StopId`),
-	INDEX `IDX_Report_Stops_TripId` (`TripId`),
-	INDEX `IDX_Report_Stops_OriginalStopId` (`OriginalStopId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=876907
-;
-
-ALTER TABLE `Report`.`Stops`
-	ADD COLUMN `DeliverFrom2` VARCHAR(6) NULL AFTER `ExtensionOriginalValue`,
-	ADD COLUMN `DeliverUntil2` VARCHAR(6) NULL AFTER `DeliverFrom2`;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script40">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents40">
-						08Fact.Visits.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents40" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`Visits` (
-	`VisitId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`StopId` BIGINT(20) NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`City` VARCHAR(50) NOT NULL,
-	`Country` CHAR(2) NOT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`VisitId`),
-	INDEX `IDX_VISITS_Zipcode_HOUSENUMBER` (`Zipcode`, `Housenumber`),
-	INDEX `IDX_VISITS_STOPID` (`StopId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=22934
-;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script41">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents41">
-						08Feit.Parcels.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents41" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE Feit.Parcels
-(
-	Barcode VARCHAR(50) NOT NULL PRIMARY KEY,
-	VisitId BIGINT NOT NULL,
-	ArtikelnummerMedea VARCHAR(10) NULL,
-	Productcode VARCHAR(10) NULL,
-	GebruikVoertuigCapaciteitVolumeCm3 INT NOT NULL, /* Eenheid die bepaalt in hoeverre de stop nog in voertuig past. Als eenheid kan bijvoorbeeld m^3 worden gebruikt */
-	GebruikVoertuigCapaciteitGewichtGram INT NOT NULL, /* Eenheid die bepaalt in hoeverre de stop nog in voertuig past. Als eenheid kan bijvoorbeeld kg worden gebruikt */
-	BezorgenVanaf VARCHAR(6) NULL, /* Begin van het venster waarbinnen de planning deze stop moet inplannen */
-	BezorgenTotEnMet VARCHAR(6) NULL, /* Einde van het venster waarbinnen de planning deze stop moet inplannen */
-	BezorgingDatum DATE NULL, 
-	ObjectSubTypeId INT NOT NULL,
-    StoptijdSeconden INT NOT NULL DEFAULT 0
-)
-
-
-CREATE INDEX IDX_PARCELS_BEZORGINGDATUM ON Feit.Parcels(BezorgingDatum);
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script42">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents42">
-						08Processing.Visits.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents42" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`Visits` (
-	`VisitId` BIGINT(20) NOT NULL,
-	`StopId` BIGINT(20) NOT NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`City` VARCHAR(50) NOT NULL,
-	`Country` CHAR(2) NOT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`VisitId`),
-	INDEX `IDX_PROCESSING_VISITS_STOPID` (`StopId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script43">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents43">
-						08Report.Visits.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents43" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`Visits` (
-	`VisitId` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`StopId` BIGINT(20) NULL,
-	`Street` VARCHAR(100) NULL DEFAULT NULL,
-	`Housenumber` INT(11) NOT NULL,
-	`Extension` VARCHAR(100) NULL DEFAULT NULL,
-	`Zipcode` VARCHAR(10) NOT NULL,
-	`City` VARCHAR(50) NOT NULL,
-	`Country` CHAR(2) NOT NULL,
-	`OriginalVisitId` BIGINT(20) NOT NULL,
-	`StreetOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`HousenumberOriginalValue` INT(11) NOT NULL,
-	`ExtensionOriginalValue` VARCHAR(100) NULL DEFAULT NULL,
-	`ZipcodeOriginalValue` VARCHAR(10) NOT NULL,
-	`CityOriginalValue` VARCHAR(50) NOT NULL,
-	PRIMARY KEY (`VisitId`),
-	INDEX `IDX_Report_Visits_StopId` (`StopId`),
-	INDEX `IDX_Report_Visits_OriginalVisitId` (`OriginalVisitId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=652735
-;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script44">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents44">
-						09Fact.Parcels.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents44" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Fact`.`Parcels` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`VisitId` BIGINT(20) NOT NULL,
-	`ArticleNumberMedea` VARCHAR(10) NULL DEFAULT NULL,
-	`Productcode` VARCHAR(10) NULL DEFAULT NULL,
-	`UsedVehicleCapacityVolumeCm3` INT(11) NOT NULL,
-	`UsedVehicleCapacityWeightGram` INT(11) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverDate` DATE NULL DEFAULT NULL,
-	`ObjectSubTypeId` INT(11) NOT NULL,
-	`StoptimeSeconds` INT(11) NOT NULL DEFAULT '0',
-	`Updated` DATETIME(6) NULL DEFAULT NULL,
-	PRIMARY KEY (`Barcode`),
-	INDEX `IDX_PARCELS_DELIVERDATE` (`DeliverDate`),
-	INDEX `IDX_PARCELS_VISITID` (`VisitId`),
-	INDEX `IDX_PARCELS_DELIVERDATE_INCL_VISITID` (`DeliverDate`, `VisitId`),
-	INDEX `IX_Parcels_DeliverDate_ObjectSubTypeID` (`DeliverDate`, `ObjectSubTypeId`, `VisitId`),
-	INDEX `FK__Parcels__ObjectS__51300E55` (`ObjectSubTypeId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-ALTER TABLE `Fact`.`Parcels`
-	ADD COLUMN `DeliverFrom2` VARCHAR(6) NULL AFTER `Updated`,
-	ADD COLUMN `DeliverUntil2` VARCHAR(6) NULL AFTER `DeliverFrom2`;
-
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script45">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents45">
-						09Processing.Parcels.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents45" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Processing`.`Parcels` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`VisitId` BIGINT(20) NULL,
-	`ArticleNumberMedea` VARCHAR(10) NULL DEFAULT NULL,
-	`Productcode` VARCHAR(10) NULL DEFAULT NULL,
-	`UsedVehicleCapacityVolumeCm3` INT(11) NOT NULL,
-	`UsedVehicleCapacityWeightGram` INT(11) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverDate` DATE NULL DEFAULT NULL,
-	`ObjectSubTypeId` INT(11) NOT NULL,
-	`StoptimeSeconds` INT(11) NOT NULL DEFAULT '0',
-	`Updated` DATETIME(6) NULL DEFAULT NULL,
-	`DroppedReason` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`Barcode`),
-	INDEX `IDX_PROCESSING_PARCELS_VISITID` (`VisitId`),
-	INDEX `IDX_PROCESSING_PARCELS_DELIVERDATE` (`DeliverDate`),
-	INDEX `IDX_PROCESSING_PARCELS_DELIVERDATE_INCL_VISITID` (`DeliverDate`, `VisitId`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-ALTER TABLE `Processing`.`Parcels`
-	ADD COLUMN `DeliverFrom2` VARCHAR(6) NULL AFTER `DroppedReason`,
-	ADD COLUMN `DeliverUntil2` VARCHAR(6) NULL AFTER `DeliverFrom2`;
-
-					</code>
-				</pre>
-			  </div>
-			</div>
-		</div><div class="card">
-			<div class="card-header" id="script46">
-				<h5>
-					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents46">
-						09Report.Parcels.sql
-					</button>
-				</h5>
-			</div>
-			
-		    <div id="script-contents46" class="collapse">
-			  <div class="card-body">
-				<pre class="prettyprint">
-					<code class="lang-sql">
-CREATE TABLE IF NOT EXISTS `Report`.`Parcels` (
-	`Barcode` VARCHAR(50) NOT NULL,
-	`VisitId` BIGINT(20) NULL DEFAULT NULL,
-	`ArticleNumberMedea` VARCHAR(10) NULL DEFAULT NULL,
-	`Productcode` VARCHAR(10) NULL DEFAULT NULL,
-	`UsedVehicleCapacityVolumeCm3` INT(11) NOT NULL,
-	`UsedVehicleCapacityWeightGram` INT(11) NOT NULL,
-	`DeliverFrom` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverUntil` VARCHAR(6) NULL DEFAULT NULL,
-	`DeliverDate` DATE NOT NULL,
-	`ObjectSubTypeId` INT(11) NOT NULL,
-	`StoptimeSeconds` INT(11) NOT NULL DEFAULT '0',
-	`Updated` DATETIME(6) NULL DEFAULT NULL,
-	`WidthMm` INT(11) NULL DEFAULT NULL,
-	`LengthMm` INT(11) NULL DEFAULT NULL,
-	`HeightMm` INT(11) NULL DEFAULT NULL,
-	`VolumeCm3` INT(11) NULL DEFAULT NULL,
-	`WeightGram` INT(11) NULL DEFAULT NULL,
-	`PlannedType` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`Barcode`, `DeliverDate`),
-	INDEX `IX_Parcels_VisitID` (`VisitId`, `UsedVehicleCapacityVolumeCm3`, `UsedVehicleCapacityWeightGram`, `StoptimeSeconds`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB
-;
-
-ALTER TABLE `Report`.`Parcels`
-	ADD COLUMN `DeliverFrom2` VARCHAR(6) NULL AFTER `PlannedType`,
-	ADD COLUMN `DeliverUntil2` VARCHAR(6) NULL AFTER `DeliverFrom2`;
 					</code>
 				</pre>
 			  </div>
