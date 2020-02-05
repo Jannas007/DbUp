@@ -14,7 +14,7 @@
             <div class="alert alert-danger">& nbsp;JavaScript execution is currently disabled. Enable JavaScript on your browser to view the change report.</div>
     </noscript>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">DBUp Delta Report Generated 2/4/2020 8:24:16 AM</a>
+		<a class="navbar-brand" href="#">DBUp Delta Report Generated 2/4/2020 12:50:15 PM</a>
 	</nav>
     <div class="jumbotron">
         <h2>DBUp Delta Report</h2>
@@ -28,7 +28,7 @@
 			<div class="card-header" id="script0">
 				<h5>
 					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents0">
-						00Configuration.sql
+						001Configuration.sql
 					</button>
 				</h5>
 			</div>
@@ -58,7 +58,7 @@ USE `Configuration`;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE IF NOT EXISTS `schemaversions`
+CREATE TABLE IF NOT EXISTS Configuration.schemaversions
 (
   `schemaversionid` int NOT NULL AUTO_INCREMENT,
   `scriptname` varchar
@@ -552,6 +552,1016 @@ CREATE TABLE `ZipcodeGroups` (
 
 -- Dump completed on 2020-02-03 14:49:26
 
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script1">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents1">
+						001Dimension.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents1" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+CREATE DATABASE  IF NOT EXISTS `Dimension` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Dimension`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Dimension
+-- ------------------------------------------------------
+-- Server version	5.6.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `schemaversions`
+(
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Table structure for table `ObjectSources`
+--
+
+DROP TABLE IF EXISTS `ObjectSources`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ObjectSources` (
+  `ObjectSourceId` int(11) NOT NULL,
+  `ObjectSourceName` varchar(15) CHARACTER SET utf8mb4 NOT NULL,
+  PRIMARY KEY (`ObjectSourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ObjectSubTypes`
+--
+
+DROP TABLE IF EXISTS `ObjectSubTypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ObjectSubTypes` (
+  `ObjectSubTypeId` int(11) NOT NULL,
+  `ObjectSubTypeName` varchar(10) CHARACTER SET utf8mb4 NOT NULL,
+  `ObjectTypeId` int(11) NOT NULL,
+  PRIMARY KEY (`ObjectSubTypeId`),
+  KEY `FK__ObjectSub__Objec__0F624AF8` (`ObjectTypeId`),
+  CONSTRAINT `FK__ObjectSub__Objec__0F624AF8` FOREIGN KEY (`ObjectTypeId`) REFERENCES `ObjectTypes` (`ObjectTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ObjectTypes`
+--
+
+DROP TABLE IF EXISTS `ObjectTypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ObjectTypes` (
+  `ObjectTypeId` int(11) NOT NULL,
+  `ObjectTypeName` varchar(10) CHARACTER SET utf8mb4 NOT NULL,
+  PRIMARY KEY (`ObjectTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-03 15:04:49
+
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script2">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents2">
+						001Fact.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents2" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+CREATE DATABASE  IF NOT EXISTS `Fact` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Fact`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Fact
+-- ------------------------------------------------------
+-- Server version	5.6.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `schemaversions`
+(
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Table structure for table `ActionLogs`
+--
+
+DROP TABLE IF EXISTS `ActionLogs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ActionLogs` (
+  `LoggingId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ActionTime` datetime(6) NOT NULL,
+  `ActionGuid` varchar(64) NOT NULL,
+  `SessionGuid` varchar(64) NOT NULL,
+  `PluginAction` int(11) NOT NULL,
+  `Result` int(11) NOT NULL,
+  `Message` longtext,
+  `PluginScheduleId` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`LoggingId`),
+  KEY `IDX_ActionLogs_ActionGuid` (`ActionGuid`),
+  KEY `IDX_ActionLogs_SessionGuid` (`SessionGuid`),
+  KEY `IDX_ActionLogs_PluginScheduleId` (`PluginScheduleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=234468 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `BarcodeTgnTpoNumberMappings`
+--
+
+DROP TABLE IF EXISTS `BarcodeTgnTpoNumberMappings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `BarcodeTgnTpoNumberMappings` (
+  `Barcode` varchar(50) NOT NULL,
+  `DeliverDate` date NOT NULL,
+  `TgnTpoNumber` varchar(50) NOT NULL,
+  PRIMARY KEY (`Barcode`,`DeliverDate`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ObjectItems`
+--
+
+DROP TABLE IF EXISTS `ObjectItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ObjectItems` (
+  `ObjectItemId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ObjectSourceId` int(11) NOT NULL,
+  `ObjectTypeId` int(11) NOT NULL,
+  `ObjectSubTypeId` int(11) NOT NULL,
+  `ObjectName` varchar(255) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `Created` datetime NOT NULL,
+  `Updated` datetime NOT NULL,
+  PRIMARY KEY (`ObjectItemId`),
+  KEY `ObjectSourceId` (`ObjectSourceId`),
+  KEY `ObjectTypeId` (`ObjectTypeId`),
+  KEY `ObjectSubTypeId` (`ObjectSubTypeId`),
+  CONSTRAINT `ObjectItems_ibfk_1` FOREIGN KEY (`ObjectSourceId`) REFERENCES `Dimension`.`ObjectSources` (`ObjectSourceId`),
+  CONSTRAINT `ObjectItems_ibfk_2` FOREIGN KEY (`ObjectTypeId`) REFERENCES `Dimension`.`ObjectTypes` (`ObjectTypeId`),
+  CONSTRAINT `ObjectItems_ibfk_3` FOREIGN KEY (`ObjectSubTypeId`) REFERENCES `Dimension`.`ObjectSubTypes` (`ObjectSubTypeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=1148 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ParcelOptionFeatures`
+--
+
+DROP TABLE IF EXISTS `ParcelOptionFeatures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ParcelOptionFeatures` (
+  `Barcode` varchar(50) NOT NULL,
+  `Option` char(3) NOT NULL,
+  `Feature` char(3) NOT NULL,
+  `Updated` datetime(6) NOT NULL,
+  PRIMARY KEY (`Barcode`,`Option`,`Feature`),
+  KEY `IDX_FACT_PARCELOPTIONFEATURES_BARCODE` (`Barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ParcelSizes`
+--
+
+DROP TABLE IF EXISTS `ParcelSizes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ParcelSizes` (
+  `Barcode` varchar(50) NOT NULL,
+  `DeliverDate` date NOT NULL,
+  `WidthMm` int(11) DEFAULT NULL,
+  `LengthMm` int(11) DEFAULT NULL,
+  `HeightMm` int(11) DEFAULT NULL,
+  `VolumeCm3` int(11) DEFAULT NULL,
+  `WeightGram` int(11) DEFAULT NULL,
+  `Updated` datetime(6) NOT NULL,
+  `RegisterDateTime` datetime(6) NOT NULL,
+  `SortProd` varchar(50) DEFAULT NULL,
+  `Productcode` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`Barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Parcels`
+--
+
+DROP TABLE IF EXISTS `Parcels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Parcels` (
+  `Barcode` varchar(50) NOT NULL,
+  `VisitId` bigint(20) NOT NULL,
+  `ArticleNumberMedea` varchar(10) DEFAULT NULL,
+  `Productcode` varchar(10) DEFAULT NULL,
+  `UsedVehicleCapacityVolumeCm3` int(11) NOT NULL,
+  `UsedVehicleCapacityWeightGram` int(11) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `DeliverDate` date DEFAULT NULL,
+  `ObjectSubTypeId` int(11) NOT NULL,
+  `StoptimeSeconds` int(11) NOT NULL DEFAULT '0',
+  `Updated` datetime(6) DEFAULT NULL,
+  `DeliverFrom2` varchar(6) DEFAULT NULL,
+  `DeliverUntil2` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`Barcode`),
+  KEY `IDX_PARCELS_DELIVERDATE` (`DeliverDate`),
+  KEY `IDX_PARCELS_VISITID` (`VisitId`),
+  KEY `IDX_PARCELS_DELIVERDATE_INCL_VISITID` (`DeliverDate`,`VisitId`),
+  KEY `IX_Parcels_DeliverDate_ObjectSubTypeID` (`DeliverDate`,`ObjectSubTypeId`,`VisitId`),
+  KEY `FK__Parcels__ObjectS__51300E55` (`ObjectSubTypeId`),
+  CONSTRAINT `FK__Parcels__ObjectS__51300E55` FOREIGN KEY (`ObjectSubTypeId`) REFERENCES `Dimension`.`ObjectSubTypes` (`ObjectSubTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Parcels__VisitId__503BEA1C` FOREIGN KEY (`VisitId`) REFERENCES `Visits` (`VisitId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `RoutePlans`
+--
+
+DROP TABLE IF EXISTS `RoutePlans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `RoutePlans` (
+  `RoutePlanId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ClusterId` int(11) NOT NULL,
+  `RouteDate` date NOT NULL,
+  `RouteType` int(11) NOT NULL,
+  `RoutePlanCreated` datetime(6) DEFAULT NULL,
+  `PlanningType` int(11) DEFAULT NULL,
+  `XmlExported` datetime(6) DEFAULT NULL,
+  `SolveTimeMs` bigint(20) DEFAULT NULL,
+  `NumberOfTrips` int(11) DEFAULT NULL,
+  `NumberOfStops` int(11) DEFAULT NULL,
+  `UsedSoftwareVersion` varchar(20) DEFAULT NULL,
+  `UsedSoftwareDate` datetime(6) DEFAULT NULL,
+  `TotalTravelTimeSeconds` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`RoutePlanId`),
+  KEY `FK__RoutePlan__Clust__3D2915A8` (`ClusterId`),
+  CONSTRAINT `FK__RoutePlan__Clust__3D2915A8` FOREIGN KEY (`ClusterId`) REFERENCES `Configuration`.`Clusters` (`ClusterId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=27339 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Stops`
+--
+
+DROP TABLE IF EXISTS `Stops`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Stops` (
+  `StopId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ObjectItemId` bigint(20) DEFAULT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` char(2) NOT NULL,
+  `Lat` double DEFAULT NULL,
+  `Lon` double DEFAULT NULL,
+  `TripId` bigint(20) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `StopDate` date NOT NULL,
+  `RouteType` int(11) NOT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  `Distance` double DEFAULT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  `ReadyForPlanning` tinyint(1) NOT NULL DEFAULT '0',
+  `IsPickup` tinyint(1) DEFAULT NULL,
+  `PickupStopId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`StopId`),
+  KEY `IDX_STOPS_Zipcode_Housenumber` (`Zipcode`,`Housenumber`),
+  KEY `IDX_STOPS_ROUTEPLANID` (`RoutePlanId`),
+  KEY `IDX_STOPS_TRIPID` (`TripId`),
+  KEY `IDX_STOPS_OBJECTITEMID` (`ObjectItemId`),
+  KEY `FK__Stops__Distribut__498EEC8D` (`DistributionChannelId`),
+  KEY `FK__Stops__PickupStopId_idx` (`PickupStopId`),
+  CONSTRAINT `FK__Stops__Distribut__498EEC8D` FOREIGN KEY (`DistributionChannelId`) REFERENCES `Configuration`.`DistributionChannels` (`DistributionChannelId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__PickupStopId` FOREIGN KEY (`PickupStopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__RoutePlan__46B27FE2` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__47A6A41B` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3819379 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Trips`
+--
+
+DROP TABLE IF EXISTS `Trips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Trips` (
+  `TripId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DepartureTime` varchar(6) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `TripNumber` int(11) NOT NULL,
+  `DistanceFromLastStop` double DEFAULT NULL,
+  PRIMARY KEY (`TripId`),
+  KEY `FK__Trips__RoutePlan__43D61337` (`RoutePlanId`),
+  CONSTRAINT `FK__Trips__RoutePlan__43D61337` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3123 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Visits`
+--
+
+DROP TABLE IF EXISTS `Visits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Visits` (
+  `VisitId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `StopId` bigint(20) NOT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` char(2) NOT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  PRIMARY KEY (`VisitId`),
+  KEY `IDX_VISITS_Zipcode_HOUSENUMBER` (`Zipcode`,`Housenumber`),
+  KEY `IDX_VISITS_STOPID` (`StopId`),
+  CONSTRAINT `FK__Visits__StopId__4C6B5938` FOREIGN KEY (`StopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3819378 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-03 15:06:32
+
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script3">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents3">
+						001Processing.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents3" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+CREATE DATABASE  IF NOT EXISTS `Processing` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Processing`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Processing
+-- ------------------------------------------------------
+-- Server version	5.6.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS Processing.schemaversions
+(
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Table structure for table `ParcelOptionFeatures`
+--
+
+DROP TABLE IF EXISTS `ParcelOptionFeatures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ParcelOptionFeatures` (
+  `Barcode` varchar(50) NOT NULL,
+  `Option` char(3) NOT NULL,
+  `Feature` char(3) NOT NULL,
+  `Updated` datetime(6) NOT NULL,
+  PRIMARY KEY (`Barcode`,`Option`,`Feature`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ParcelSizes`
+--
+
+DROP TABLE IF EXISTS `ParcelSizes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ParcelSizes` (
+  `Barcode` varchar(50) NOT NULL,
+  `DeliverDate` date NOT NULL,
+  `WidthMm` int(11) DEFAULT NULL,
+  `LengthMm` int(11) DEFAULT NULL,
+  `HeightMm` int(11) DEFAULT NULL,
+  `VolumeCm3` int(11) DEFAULT NULL,
+  `WeightGram` int(11) DEFAULT NULL,
+  `Updated` datetime(6) NOT NULL,
+  `RegisterDateTime` datetime(6) NOT NULL,
+  `SortProd` varchar(50) DEFAULT NULL,
+  `Productcode` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`Barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Parcels`
+--
+
+DROP TABLE IF EXISTS `Parcels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Parcels` (
+  `Barcode` varchar(50) NOT NULL,
+  `VisitId` bigint(20) DEFAULT NULL,
+  `ArticleNumberMedea` varchar(10) DEFAULT NULL,
+  `Productcode` varchar(10) DEFAULT NULL,
+  `UsedVehicleCapacityVolumeCm3` int(11) NOT NULL,
+  `UsedVehicleCapacityWeightGram` int(11) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `DeliverDate` date DEFAULT NULL,
+  `ObjectSubTypeId` int(11) NOT NULL,
+  `StoptimeSeconds` int(11) NOT NULL DEFAULT '0',
+  `Updated` datetime(6) DEFAULT NULL,
+  `DeliverFrom2` varchar(6) DEFAULT NULL,
+  `DeliverUntil2` varchar(6) DEFAULT NULL,
+  `DroppedReason` int(11) DEFAULT NULL,
+  `CommercialTimeWindowFrom` varchar(6) DEFAULT NULL,
+  `CommercialTimeWindowUntil` varchar(6) DEFAULT NULL,
+  `TimeSlotIndicationFrom` varchar(6) DEFAULT NULL,
+  `TimeSlotIndicationUntil` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`Barcode`),
+  KEY `IDX_PROCESSING_PARCELS_VISITID` (`VisitId`),
+  KEY `IDX_PROCESSING_PARCELS_DELIVERDATE` (`DeliverDate`),
+  KEY `IDX_PROCESSING_PARCELS_DELIVERDATE_INCL_VISITID` (`DeliverDate`,`VisitId`),
+  CONSTRAINT `FK__Parcels__VisitId__02284B6B` FOREIGN KEY (`VisitId`) REFERENCES `Visits` (`VisitId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ParcelsToProcess`
+--
+
+DROP TABLE IF EXISTS `ParcelsToProcess`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ParcelsToProcess` (
+  `Barcode` varchar(50) NOT NULL,
+  PRIMARY KEY (`Barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `RoutePlans`
+--
+
+DROP TABLE IF EXISTS `RoutePlans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `RoutePlans` (
+  `RoutePlanId` bigint(20) NOT NULL,
+  `ClusterId` int(11) NOT NULL,
+  `RouteDate` date NOT NULL,
+  `RouteType` int(11) NOT NULL,
+  `RoutePlanCreated` datetime(6) DEFAULT NULL,
+  `PlanningType` int(11) DEFAULT NULL,
+  `XmlExported` datetime(6) DEFAULT NULL,
+  `SolveTimeMs` bigint(20) DEFAULT NULL,
+  `NumberOfTrips` int(11) DEFAULT NULL,
+  `NumberOfStops` int(11) DEFAULT NULL,
+  `UsedSoftwareVersion` varchar(20) DEFAULT NULL,
+  `UsedSoftwareDate` datetime(6) DEFAULT NULL,
+  `TotalTravelTimeSeconds` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`RoutePlanId`),
+  KEY `FK__RoutePlan__Clust__668030F6` (`ClusterId`),
+  CONSTRAINT `FK__RoutePlan__Clust__668030F6` FOREIGN KEY (`ClusterId`) REFERENCES `Configuration`.`Clusters` (`ClusterId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Stops`
+--
+
+DROP TABLE IF EXISTS `Stops`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Stops` (
+  `StopId` bigint(20) NOT NULL,
+  `ObjectItemId` bigint(20) DEFAULT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` char(2) NOT NULL,
+  `Lat` double DEFAULT NULL,
+  `Lon` double DEFAULT NULL,
+  `TripId` bigint(20) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `StopDate` date NOT NULL,
+  `RouteType` int(11) NOT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  `Distance` double DEFAULT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  `DeliverFrom2` varchar(6) DEFAULT NULL,
+  `DeliverUntil2` varchar(6) DEFAULT NULL,
+  `IsPickup` tinyint(1) DEFAULT NULL,
+  `PickupStopId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`StopId`),
+  KEY `IDX_PROCESSING_STOPS_ROUTEPLANID` (`RoutePlanId`),
+  KEY `IDX_PROCESSING_STOPS_TRIPID` (`TripId`),
+  KEY `IDX_PROCESSING_STOPS_Zipcode_Housenumber` (`Zipcode`,`Housenumber`),
+  KEY `IDX_PROCESSING_STOPS_OBJECTITEMID` (`ObjectItemId`),
+  KEY `FK__Stops__PickupStopId_idx` (`PickupStopId`),
+  CONSTRAINT `FK__Stops__PickupStopId` FOREIGN KEY (`PickupStopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__RoutePlan__0BB1B5A5` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__RoutePlan__71F1E3A2` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__0CA5D9DE` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__72E607DB` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Trips`
+--
+
+DROP TABLE IF EXISTS `Trips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Trips` (
+  `TripId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DepartureTime` varchar(6) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `TripNumber` int(11) NOT NULL,
+  `DistanceFromLastStop` double DEFAULT NULL,
+  PRIMARY KEY (`TripId`),
+  KEY `FK__Trips__RoutePlan__6B44E613` (`RoutePlanId`),
+  CONSTRAINT `FK__Trips__RoutePlan__6B44E613` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=139035 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Visits`
+--
+
+DROP TABLE IF EXISTS `Visits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Visits` (
+  `VisitId` bigint(20) NOT NULL,
+  `StopId` bigint(20) DEFAULT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` char(2) NOT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  PRIMARY KEY (`VisitId`),
+  KEY `IDX_PROCESSING_VISITS_STOPID` (`StopId`),
+  CONSTRAINT `FK__Visits__StopId__7A8729A3` FOREIGN KEY (`StopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-03 15:10:46
+
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script4">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents4">
+						001Report.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents4" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+CREATE DATABASE  IF NOT EXISTS `Report` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Report`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Report
+-- ------------------------------------------------------
+-- Server version	5.6.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `schemaversions`
+(
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Table structure for table `Parcels`
+--
+
+DROP TABLE IF EXISTS `Parcels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Parcels` (
+  `Barcode` varchar(50) NOT NULL,
+  `VisitId` bigint(20) DEFAULT NULL,
+  `ArticleNumberMedea` varchar(10) DEFAULT NULL,
+  `Productcode` varchar(10) DEFAULT NULL,
+  `UsedVehicleCapacityVolumeCm3` int(11) NOT NULL,
+  `UsedVehicleCapacityWeightGram` int(11) NOT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `DeliverDate` date NOT NULL,
+  `ObjectSubTypeId` int(11) NOT NULL,
+  `StoptimeSeconds` int(11) NOT NULL DEFAULT '0',
+  `Updated` datetime(6) DEFAULT NULL,
+  `DeliverFrom2` varchar(6) DEFAULT NULL,
+  `DeliverUntil2` varchar(6) DEFAULT NULL,
+  `WidthMm` int(11) DEFAULT NULL,
+  `LengthMm` int(11) DEFAULT NULL,
+  `HeightMm` int(11) DEFAULT NULL,
+  `VolumeCm3` int(11) DEFAULT NULL,
+  `WeightGram` int(11) DEFAULT NULL,
+  `PlannedType` int(11) DEFAULT NULL,
+  `CommercialTimeWindowFrom` varchar(6) DEFAULT NULL,
+  `CommercialTimeWindowUntil` varchar(6) DEFAULT NULL,
+  `TimeSlotIndicationFrom` varchar(6) DEFAULT NULL,
+  `TimeSlotIndicationUntil` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`Barcode`,`DeliverDate`),
+  KEY `IX_Parcels_VisitID` (`VisitId`,`UsedVehicleCapacityVolumeCm3`,`UsedVehicleCapacityWeightGram`,`StoptimeSeconds`),
+  CONSTRAINT `FK__Parcels__VisitId__05F8DC4F` FOREIGN KEY (`VisitId`) REFERENCES `Visits` (`VisitId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Parcels__VisitId__06ED0088` FOREIGN KEY (`VisitId`) REFERENCES `Visits` (`VisitId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `RoutePlans`
+--
+
+DROP TABLE IF EXISTS `RoutePlans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `RoutePlans` (
+  `RoutePlanId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ClusterId` int(11) NOT NULL,
+  `RouteDate` date NOT NULL,
+  `RouteType` int(11) NOT NULL,
+  `RoutePlanCreated` datetime(6) DEFAULT NULL,
+  `PlanningType` int(11) DEFAULT NULL,
+  `XmlExported` datetime(6) DEFAULT NULL,
+  `SolveTimeMs` bigint(20) DEFAULT NULL,
+  `NumberOfTrips` int(11) DEFAULT NULL,
+  `NumberOfStops` int(11) DEFAULT NULL,
+  `OriginalRoutePlanId` bigint(20) NOT NULL,
+  `UsedSoftwareVersion` varchar(20) DEFAULT NULL,
+  `UsedSoftwareDate` datetime(6) DEFAULT NULL,
+  `TotalTravelTimeSeconds` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`RoutePlanId`),
+  UNIQUE KEY `UQ_ReportRoutePlans_ClusterId_RouteDate_PlanningType` (`ClusterId`,`RouteDate`,`PlanningType`),
+  KEY `IDX_Report_RoutePlans_ClusterId` (`ClusterId`),
+  KEY `IDX_Report_RoutePlans_OriginalRoutePlanId` (`OriginalRoutePlanId`)
+) ENGINE=InnoDB AUTO_INCREMENT=13249 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Stops`
+--
+
+DROP TABLE IF EXISTS `Stops`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Stops` (
+  `StopId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ObjectItemId` bigint(20) DEFAULT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) DEFAULT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) DEFAULT NULL,
+  `City` varchar(50) DEFAULT NULL,
+  `Country` char(2) DEFAULT NULL,
+  `Lat` double DEFAULT NULL,
+  `Lon` double DEFAULT NULL,
+  `TripId` bigint(20) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `StopDate` date DEFAULT NULL,
+  `RouteType` int(11) DEFAULT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `DistributionChannelId` int(11) DEFAULT NULL,
+  `Distance` double DEFAULT NULL,
+  `OriginalStopId` bigint(20) DEFAULT NULL,
+  `DeliverFrom` varchar(6) DEFAULT NULL,
+  `DeliverUntil` varchar(6) DEFAULT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  `DeliverFrom2` varchar(6) DEFAULT NULL,
+  `DeliverUntil2` varchar(6) DEFAULT NULL,
+  `IsPickup` tinyint(1) DEFAULT NULL,
+  `PickupStopId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`StopId`),
+  KEY `IDX_Report_Stops_TripId` (`TripId`),
+  KEY `IDX_Report_Stops_OriginalStopId` (`OriginalStopId`),
+  KEY `FK__Stops__PickupStopId_idx` (`PickupStopId`),
+  CONSTRAINT `FK__Stops__PickupStopId` FOREIGN KEY (`PickupStopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__08D548FA` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__09C96D33` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__75C27486` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Stops__TripId__76B698BF` FOREIGN KEY (`TripId`) REFERENCES `Trips` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9691508 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Trips`
+--
+
+DROP TABLE IF EXISTS `Trips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Trips` (
+  `TripId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DepartureTime` varchar(6) DEFAULT NULL,
+  `ExpectedArrivalTime` varchar(6) DEFAULT NULL,
+  `RoutePlanId` bigint(20) DEFAULT NULL,
+  `TripNumber` int(11) NOT NULL,
+  `DistanceFromLastStop` double DEFAULT NULL,
+  `OriginalTripId` bigint(20) NOT NULL,
+  `Tripcode` varchar(4) DEFAULT NULL,
+  `TripListPdfFilename` varchar(250) DEFAULT NULL,
+  `PlannedType` int(11) DEFAULT NULL,
+  PRIMARY KEY (`TripId`),
+  KEY `IDX_Report_Trips_RoutePlanId` (`RoutePlanId`),
+  KEY `IDX_Report_Trips_OriginalTripId` (`OriginalTripId`),
+  CONSTRAINT `FK__Trips__RoutePlan__6E2152BE` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Trips__RoutePlan__6F1576F7` FOREIGN KEY (`RoutePlanId`) REFERENCES `RoutePlans` (`RoutePlanId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=237666 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `TripsExported`
+--
+
+DROP TABLE IF EXISTS `TripsExported`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `TripsExported` (
+  `OriginalTripId` bigint(20) NOT NULL,
+  `ExportType` int(11) NOT NULL,
+  `Exported` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`OriginalTripId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Visits`
+--
+
+DROP TABLE IF EXISTS `Visits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Visits` (
+  `VisitId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `StopId` bigint(20) DEFAULT NULL,
+  `Street` varchar(100) DEFAULT NULL,
+  `Housenumber` int(11) NOT NULL,
+  `Extension` varchar(100) DEFAULT NULL,
+  `Zipcode` varchar(10) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` char(2) NOT NULL,
+  `OriginalVisitId` bigint(20) NOT NULL,
+  `StreetOriginalValue` varchar(100) DEFAULT NULL,
+  `HousenumberOriginalValue` int(11) NOT NULL,
+  `ExtensionOriginalValue` varchar(100) DEFAULT NULL,
+  `ZipcodeOriginalValue` varchar(10) NOT NULL,
+  `CityOriginalValue` varchar(50) NOT NULL,
+  PRIMARY KEY (`VisitId`),
+  KEY `IDX_Report_Visits_StopId` (`StopId`),
+  KEY `IDX_Report_Visits_OriginalVisitId` (`OriginalVisitId`),
+  CONSTRAINT `FK__Visits__StopId__7D63964E` FOREIGN KEY (`StopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK__Visits__StopId__7E57BA87` FOREIGN KEY (`StopId`) REFERENCES `Stops` (`StopId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9034326 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-03 15:40:28
+
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script5">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents5">
+						001Support.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents5" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+CREATE DATABASE  IF NOT EXISTS `Support` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Support`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
+--
+-- Host: ldp-db-tst.cugdiz64lnln.eu-west-1.rds.amazonaws.com    Database: Support
+-- ------------------------------------------------------
+-- Server version	5.6.10
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-03 15:43:18
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS Support.schemaversions
+(
+  `schemaversionid` int NOT NULL AUTO_INCREMENT,
+  `scriptname` varchar
+(255) NOT NULL,
+  `applied` timestamp NOT NULL,
+  PRIMARY KEY
+(`schemaversionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+					</code>
+				</pre>
+			  </div>
+			</div>
+		</div><div class="card">
+			<div class="card-header" id="script6">
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#script-contents6">
+						08_RefreshViews.sql
+					</button>
+				</h5>
+			</div>
+			
+		    <div id="script-contents6" class="collapse">
+			  <div class="card-body">
+				<pre class="prettyprint">
+					<code class="lang-sql">
+-- exec sp_refreshview @viewname =  'Sample.SampleView'   
 					</code>
 				</pre>
 			  </div>
