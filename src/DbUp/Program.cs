@@ -17,14 +17,34 @@ namespace DbUp
 
             connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty);
 
+            EnsureDatabase.For.MySqlDatabase(connectionString);
+
+            var updatePath = args.FirstOrDefault(x => x.StartsWith("--UpdateScripts", StringComparison.OrdinalIgnoreCase));
+
+            var createPath = args.FirstOrDefault(x => x.StartsWith("--DBCreateScripts", StringComparison.OrdinalIgnoreCase));
+
+            var scriptPath = "";
+
+            if (args.Any(a => a.StartsWith("--DBCreateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            {
+               scriptPath = createPath.Substring(createPath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+            }
+            else if (args.Any(a => a.StartsWith("--UpdateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                scriptPath = updatePath.Substring(updatePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+            }
+            Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+
+            Console.WriteLine($"The ScriptPath is: {scriptPath}");
+
+            Console.ReadKey();
+
             var upgradeEngineBuilder = DeployChanges.To
                 .MySqlDatabase(connectionString, null)
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/CreateBaseDBScripts/", new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/UpdateScripts/", new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
-                .WithScriptsFromFileSystem(@"/home/jannas/dvc/ldp_db_scripts/PostDeploymentScripts/", new SqlScriptOptions { ScriptType =  ScriptType.RunAlways})
+                .WithScriptsFromFileSystem(scriptPath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
                 .WithTransactionPerScript()
                 .LogToConsole();
 
