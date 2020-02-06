@@ -18,69 +18,151 @@ namespace DbUp
             connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty);
 
             EnsureDatabase.For.MySqlDatabase(connectionString);
+            var create = false;
 
             var updatePath = args.FirstOrDefault(x => x.StartsWith("--UpdateScripts", StringComparison.OrdinalIgnoreCase));
+            if (args.Any(a => a.StartsWith("--UpdateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                updatePath = updatePath.Substring(updatePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {updatePath}");
+                Console.ReadKey();
+            }
+            else
+            {
+                updatePath = "";
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {updatePath}");
+                Console.ReadKey();
+            }
 
             var createPath = args.FirstOrDefault(x => x.StartsWith("--DBCreateScripts", StringComparison.OrdinalIgnoreCase));
-
-            var scriptPath = "";
-
             if (args.Any(a => a.StartsWith("--DBCreateScripts", StringComparison.InvariantCultureIgnoreCase)))
             {
-               scriptPath = createPath.Substring(createPath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                createPath = createPath.Substring(createPath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                create = true;
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {createPath}");
+                Console.ReadKey();
             }
-            else if (args.Any(a => a.StartsWith("--UpdateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            else
             {
-                scriptPath = updatePath.Substring(updatePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                createPath = "";
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {createPath}");
+                Console.ReadKey();
             }
-            Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
 
-            Console.WriteLine($"The ScriptPath is: {scriptPath}");
+            var postDeploy = args.FirstOrDefault(x => x.StartsWith("--PostDeployScripts", StringComparison.OrdinalIgnoreCase));
+            if (args.Any(a => a.StartsWith("--PostDeployScripts", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                postDeploy = postDeploy.Substring(postDeploy.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {postDeploy}");
+                Console.ReadKey();
+            }
+            else
+            {
+                postDeploy = "";
+                Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
+                Console.WriteLine($"The ScriptPath is: {postDeploy}");
+                Console.ReadKey();
+            }
 
-            Console.ReadKey();
 
+   
+            if ( create == true )
+            {
             var upgradeEngineBuilder = DeployChanges.To
                 .MySqlDatabase(connectionString, null)
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
-                .WithScriptsFromFileSystem(scriptPath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
+                .WithScriptsFromFileSystem(createPath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 0})
+                .WithScriptsFromFileSystem(postDeploy, new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 2 })
                 .WithTransactionPerScript()
                 .LogToConsole();
 
-            var upgrader = upgradeEngineBuilder.Build();
+                var upgrader = upgradeEngineBuilder.Build();
+                Console.WriteLine("Is upgrade required: " + upgrader.IsUpgradeRequired());
 
-            Console.WriteLine("Is upgrade required: " + upgrader.IsUpgradeRequired());
-            
-            if (args.Any(a => a.StartsWith("--PreviewReportPath", StringComparison.InvariantCultureIgnoreCase)))
-            {
-                // Generate a preview file so Octopus Deploy can generate an artifact for approvals
-                var report = args.FirstOrDefault(x => x.StartsWith("--PreviewReportPath", StringComparison.OrdinalIgnoreCase));
-                report = report.Substring(report.IndexOf("=") + 1).Replace(@"""", string.Empty);
-
-                var fullReportPath = Path.Combine(report, "UpgradeReport.html");
-
-                Console.WriteLine($"Generating the report at {fullReportPath}");
-                
-                upgrader.GenerateUpgradeHtmlReport(fullReportPath);
-            }
-            else
-            {
-                var result = upgrader.PerformUpgrade();
-
-                // Display the result
-                if (result.Successful)
+                if (args.Any(a => a.StartsWith("--PreviewReportPath", StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Success!");
+                    // Generate a preview file so Octopus Deploy can generate an artifact for approvals
+                    var report = args.FirstOrDefault(x => x.StartsWith("--PreviewReportPath", StringComparison.OrdinalIgnoreCase));
+                    report = report.Substring(report.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+                    var fullReportPath = Path.Combine(report, "UpgradeReport.html");
+
+                    Console.WriteLine($"Generating the report at {fullReportPath}");
+
+                    upgrader.GenerateUpgradeHtmlReport(fullReportPath);
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(result.Error);
-                    Console.WriteLine("Failed!");
+                    var result = upgrader.PerformUpgrade();
+
+                    // Display the result
+                    if (result.Successful)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Success!");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(result.Error);
+                        Console.WriteLine("Failed!");
+                    }
                 }
             }
+            else
+            {
+                var upgradeEngineBuilder = DeployChanges.To
+                    .MySqlDatabase(connectionString, null)
+                    // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
+                    // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
+                    // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
+                    .WithScriptsFromFileSystem(updatePath, new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 1 })
+                    .WithTransactionPerScript()
+                    .LogToConsole();
+
+                var upgrader = upgradeEngineBuilder.Build();
+                Console.WriteLine("Is upgrade required: " + upgrader.IsUpgradeRequired());
+
+                if (args.Any(a => a.StartsWith("--PreviewReportPath", StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    // Generate a preview file so Octopus Deploy can generate an artifact for approvals
+                    var report = args.FirstOrDefault(x => x.StartsWith("--PreviewReportPath", StringComparison.OrdinalIgnoreCase));
+                    report = report.Substring(report.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+                    var fullReportPath = Path.Combine(report, "UpgradeReport.html");
+
+                    Console.WriteLine($"Generating the report at {fullReportPath}");
+
+                    upgrader.GenerateUpgradeHtmlReport(fullReportPath);
+                }
+                else
+                {
+                    var result = upgrader.PerformUpgrade();
+
+                    // Display the result
+                    if (result.Successful)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Success!");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(result.Error);
+                        Console.WriteLine("Failed!");
+                    }
+                }
+            }
+            
+
+            
         }
     }
 }
