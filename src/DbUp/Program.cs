@@ -15,7 +15,7 @@ namespace DbUp
         {
             var connectionString = args.FirstOrDefault(x => x.StartsWith("--ConnectionString", StringComparison.OrdinalIgnoreCase));
 
-            connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty);
+            connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty + ("Allow User Variables=True"));
 
             EnsureDatabase.For.MySqlDatabase(connectionString);
 
