@@ -33,17 +33,14 @@ namespace DbUp
             {
                 scriptPath = updatePath.Substring(updatePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
             }
-            Console.WriteLine($"The Target DB Connectionstring is {connectionString}");
-
             Console.WriteLine($"The ScriptPath is: {scriptPath}");
-
-            Console.ReadKey();
 
             var upgradeEngineBuilder = DeployChanges.To
                 .MySqlDatabase(connectionString, null)
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
+
                 .WithScriptsFromFileSystem(scriptPath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
                 .WithTransactionPerScript()
                 .LogToConsole();
