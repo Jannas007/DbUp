@@ -19,21 +19,42 @@ namespace DbUp
 
             EnsureDatabase.For.MySqlDatabase(connectionString);
 
-            var updatePath = args.FirstOrDefault(x => x.StartsWith("--UpdateScripts", StringComparison.OrdinalIgnoreCase));
+            var basePath = args.FirstOrDefault(x => x.StartsWith("--UpdateScripts", StringComparison.OrdinalIgnoreCase));
 
-            var createPath = args.FirstOrDefault(x => x.StartsWith("--DBCreateScripts", StringComparison.OrdinalIgnoreCase));
+            var updatePath = "";
 
-            var scriptPath = "";
+            var tablePath = "";
 
-            if (args.Any(a => a.StartsWith("--DBCreateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            var sprocPath = "";
+
+            var funcPath = "";
+
+            if (args.Any(a => a.StartsWith("--UpdateScripts", StringComparison.InvariantCultureIgnoreCase)))
             {
-               scriptPath = createPath.Substring(createPath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+               basePath = basePath.Substring(basePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+               tablePath = basePath + "Tables";
+
+               updatePath = basePath + "Updates";
+
+               sprocPath = basePath + "Sprocs";
+
+               funcPath =  basePath + "Functions";
+
             }
-            else if (args.Any(a => a.StartsWith("--UpdateScripts", StringComparison.InvariantCultureIgnoreCase)))
+            else
             {
-                scriptPath = updatePath.Substring(updatePath.IndexOf("=") + 1).Replace(@"""", string.Empty);
+                basePath = "none";
+                Console.WriteLine("No values specified for UpdateScript path");
             }
-            Console.WriteLine($"The ScriptPath is: {scriptPath}");
+            // Console.WriteLine($"The BasePath is: {basePath}");
+            // Console.WriteLine($"The Tablepath is: {tablePath}");
+            // Console.WriteLine($"The Updatepath is: {updatePath}");
+            // Console.WriteLine($"The Stored Proc path is: {sprocPath}");
+            // Console.WriteLine($"The Functions path is: {funcPath}");
+            // Console.ReadKey();
+
+            
 
             var upgradeEngineBuilder = DeployChanges.To
                 .MySqlDatabase(connectionString, null)
@@ -41,7 +62,10 @@ namespace DbUp
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
                 // .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUp.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
 
-                .WithScriptsFromFileSystem(scriptPath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
+                .WithScriptsFromFileSystem(tablePath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce})
+                .WithScriptsFromFileSystem(updatePath, new SqlScriptOptions { ScriptType = ScriptType.RunOnce })
+                .WithScriptsFromFileSystem(sprocPath, new SqlScriptOptions { ScriptType = ScriptType.RunAlways })
+                .WithScriptsFromFileSystem(funcPath, new SqlScriptOptions { ScriptType = ScriptType.RunAlways })
                 .WithTransactionPerScript()
                 .LogToConsole();
 
