@@ -1,5 +1,0 @@
-﻿CREATE TABLE IF NOT EXISTS Dimensie.ObjectTypes
-(
-	ObjectTypeId INT NOT NULL PRIMARY KEY,
-	ObjectType NVARCHAR(10) NOT NULL
-)
